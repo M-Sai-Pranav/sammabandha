@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 
-const RegistrationForm = () => {
-  const navigate = useNavigate(); 
+function RegistrationForm() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: '',
     password_hash: '',
@@ -37,15 +37,15 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.post('/api/register', user); // Adjust the URL as needed
       console.log('Response from the server:', response.data);
-            // Check if the registration was successful, you can customize this condition
-            if (response.status === 200) {
-              // If successful, navigate to the "PreferencesForm" route
-              navigate('/LoginForm');
-            }
+      // Check if the registration was successful, you can customize this condition
+      if (response.status === 200) {
+        // If successful, navigate to the "PreferencesForm" route
+        navigate('/LoginForm');
+      }
     } catch (error) {
       console.error('Error sending data:', error);
     }
@@ -161,14 +161,13 @@ const RegistrationForm = () => {
           </Button>
         </form>
       </Paper>
-      <Link to={'/nav'}>
-            <button>
-                    Nav Bar
-                </button>
-        </Link>
+      <Link to="/nav">
+        <button>
+          Nav Bar
+        </button>
+      </Link>
     </Container>
   );
-};
+}
 
 export default RegistrationForm;
-

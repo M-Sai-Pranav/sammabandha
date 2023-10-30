@@ -16,7 +16,7 @@ import {
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const UsersRolesDropdown = () => {
+function UsersRolesDropdown() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState('');
   const [roles, setRoles] = useState([]);
@@ -25,7 +25,6 @@ const UsersRolesDropdown = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [mode, setMode] = useState('insert');
   const [noRolesMessageVisible, setNoRolesMessageVisible] = useState(false);
-
 
   const [assignedRoles, setAssignedRoles] = useState([]); // To store assigned roles for the selected user
 
@@ -53,23 +52,23 @@ const UsersRolesDropdown = () => {
 
   const handleUserSelect = (event) => {
     const userId = event.target.value;
-  
+
     setSelectedUser(userId);
-  
+
     if (userId) {
       // Fetch roles assigned to the selected user
       axios.get(`/api/get-user-roles/${userId}`)
         .then((response) => {
           const roleIDs = response.data;
-  
+
           // Automatically select the role_ids in the Multi-Select dropdown
           setSelectedRoles(roleIDs);
-  
+
           // Update the assignedRoles state with role_ids
           setAssignedRoles(roleIDs);
-  
+
           console.log('Role IDs (Frontend):', roleIDs);
-  
+
           // Make a backend API call to log role_ids in the backend console
           axios
             .post('/api/log-role-ids', {
@@ -92,12 +91,10 @@ const UsersRolesDropdown = () => {
       setSelectedRoles([]); // Deselect the roles in the Multi-Select dropdown
     }
   };
-  
-  
+
   const resetSelectedRoles = () => {
     setSelectedRoles([]);
   };
-  
 
   const updateAssignedRoles = (userId) => {
     if (userId) {
@@ -106,11 +103,11 @@ const UsersRolesDropdown = () => {
         .then((response) => {
           // Update the assignedRoles state with the new role_ids
           setAssignedRoles(response.data);
-  
+
           // Check if there are no role_ids and set the message visibility
           const noRoles = response.data.length === 0;
           setNoRolesMessageVisible(noRoles);
-          console.log(response.data)
+          console.log(response.data);
           console.log('No Roles Message Visible:', noRoles); // Log the value
         })
         .catch((error) => {
@@ -122,9 +119,6 @@ const UsersRolesDropdown = () => {
       setNoRolesMessageVisible(true); // Set to true when no user is selected
     }
   };
-  
-
-  
 
   const handleRoleSelect = (event) => {
     setSelectedRoles(event.target.value);
@@ -210,7 +204,7 @@ const UsersRolesDropdown = () => {
         <Grid item xs={6}>
           <FormControl fullWidth>
             <InputLabel id="roles-select-label">Select Roles</InputLabel>
-            
+
             <Select
               labelId="roles-select-label"
               id="roles-select"
@@ -242,7 +236,6 @@ const UsersRolesDropdown = () => {
               ))}
             </Select>
 
-
           </FormControl>
         </Grid>
         <Grid item xs={12}>
@@ -266,24 +259,19 @@ const UsersRolesDropdown = () => {
         </Grid>
 
         <Grid item xs={12}>
-        {noRolesMessageVisible ? (
-          <div>No role IDs associated with the selected user.</div>
-        ) : (
-          <div>
-            <InputLabel>Role IDs:</InputLabel>
-            {assignedRoles.map((roleID) => (
-              <Chip key={roleID} label={roleID} style={{ margin: '2px' }} />
-            ))}
-          </div>
-        )}
-      </Grid>
-
-        
-
+          {noRolesMessageVisible ? (
+            <div>No role IDs associated with the selected user.</div>
+          ) : (
+            <div>
+              <InputLabel>Role IDs:</InputLabel>
+              {assignedRoles.map((roleID) => (
+                <Chip key={roleID} label={roleID} style={{ margin: '2px' }} />
+              ))}
+            </div>
+          )}
+        </Grid>
 
       </Grid>
-
-      
 
       <Button component={Link} to="/displayusersansroles" variant="contained" color=" primary" style={{ marginTop: '5%' }}>
         Show user and roles table
@@ -303,11 +291,6 @@ const UsersRolesDropdown = () => {
       </Link>
     </Container>
   );
-};
+}
 
 export default UsersRolesDropdown;
-
-
-
-
-

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import {
@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 
-const PreferencesForm = () => {
+function PreferencesForm() {
   const navigate = useNavigate();
   const [preferences, setPreferences] = useState({
     min_age: '',
@@ -32,7 +32,6 @@ const PreferencesForm = () => {
     setUser_id(storedUserId);
   }, []);
 
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setPreferences({ ...preferences, [name]: value });
@@ -46,7 +45,6 @@ const PreferencesForm = () => {
       user_id,
       ...preferences,
     };
-
 
     // Send the preferences data to the server
     try {
@@ -64,7 +62,6 @@ const PreferencesForm = () => {
   };
 
   return (
-    <> 
     <Container maxWidth="xs">
       <Paper elevation={3} style={{ padding: '20px' }}>
         <Typography variant="h5">Preferences Form</Typography>
@@ -161,14 +158,13 @@ const PreferencesForm = () => {
           </Button>
         </form>
       </Paper>
-                <Link to={'/nav'}>
-                <button>
-                        Nav Bar
-                    </button>
-                </Link>
+      <Link to="/nav">
+        <button>
+          Nav Bar
+        </button>
+      </Link>
     </Container>
-    </>            
   );
-};
+}
 
 export default PreferencesForm;

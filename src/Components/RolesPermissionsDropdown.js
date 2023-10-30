@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import {
   Container,
@@ -19,7 +16,7 @@ import {
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const RolesPermissionsDropdown = () => {
+function RolesPermissionsDropdown() {
   const [roles, setRoles] = useState([]);
   const [permissions, setPermissions] = useState([]);
   const [selectedRole, setSelectedRole] = useState('');
@@ -30,14 +27,14 @@ const RolesPermissionsDropdown = () => {
 
   const [assignedPermissions, setAssignedPermissions] = useState([]);
   const [noPermissionsMessageVisible, setNoPermissionsMessageVisible] = useState(false);
-  const [noRolesMessageVisible, setNoRolesMessageVisible] = useState(true); 
+  const [noRolesMessageVisible, setNoRolesMessageVisible] = useState(true);
 
   useEffect(() => {
     // Fetch roles data from the backend
     axios.get('/api/get-roles')
       .then((response) => setRoles(response.data.map((role) => role.role_name)))
       .catch((error) => console.error('Error fetching roles:', error));
-    
+
     // Fetch permissions data from the backend
     axios.get('/api/get-permissions')
       .then((response) => setPermissions(response.data))
@@ -93,7 +90,7 @@ const RolesPermissionsDropdown = () => {
         .then((response) => {
           // Update the assignedPermissions state with the new permission_ids
           setAssignedPermissions(response.data);
-  
+
           // Check if there are no permission_ids and set the message visibility
           const noPermissions = response.data.length === 0;
           setNoPermissionsMessageVisible(noPermissions);
@@ -107,7 +104,6 @@ const RolesPermissionsDropdown = () => {
       setNoPermissionsMessageVisible(true);
     }
   };
-  
 
   const handleRoleSelect = (event) => {
     setSelectedRole(event.target.value);
@@ -178,134 +174,114 @@ const RolesPermissionsDropdown = () => {
 
   return (
 
-
-<Container>
-  <Grid container spacing={2}>
-    <Grid item xs={6}>
-      <FormControl fullWidth>
-        <InputLabel id="role-select-label">Select Role</InputLabel>
-        <Select
-          labelId="role-select-label"
-          id="role-select"
-          value={selectedRole}
-          onChange={handleRoleSelect}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {roles.map((role) => (
-            <MenuItem key={role} value={role}>
-              {role}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Grid>
-    <Grid item xs={6}>
-      <FormControl fullWidth>
-        <InputLabel id="permissions-select-label">Select Permissions</InputLabel>
-        <Select
-          labelId="permissions-select-label"
-          id="permissions-select"
-          multiple
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={selectedPermissions}
-          onChange={handlePermissionSelect}
-          renderValue={(selected) => (
-            <div>
-              {selected.map((value) => (
-                <Chip
+    <Container>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <FormControl fullWidth>
+            <InputLabel id="role-select-label">Select Role</InputLabel>
+            <Select
+              labelId="role-select-label"
+              id="role-select"
+              value={selectedRole}
+              onChange={handleRoleSelect}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {roles.map((role) => (
+                <MenuItem key={role} value={role}>
+                  {role}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={6}>
+          <FormControl fullWidth>
+            <InputLabel id="permissions-select-label">Select Permissions</InputLabel>
+            <Select
+              labelId="permissions-select-label"
+              id="permissions-select"
+              multiple
+              open={open}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              value={selectedPermissions}
+              onChange={handlePermissionSelect}
+              renderValue={(selected) => (
+                <div>
+                  {selected.map((value) => (
+                    <Chip
                   key={value}
                   label={value}
                   onDelete={() => setSelectedPermissions((prev) => prev.filter((p) => p !== value))}
                 />
+                  ))}
+                </div>
+              )}
+            >
+              {permissions.map((permission) => (
+                <MenuItem key={permission.permission_name} value={permission.permission_name}>
+                  {permission.permission_name}
+                </MenuItem>
               ))}
-            </div>
-          )}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <RadioGroup
+          aria-label="mode"
+          name="mode"
+          value={mode}
+          onChange={(event) => setMode(event.target.value)}
         >
-          {permissions.map((permission) => (
-            <MenuItem key={permission.permission_name} value={permission.permission_name}>
-              {permission.permission_name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Grid>
-  </Grid>
-  <Grid item xs={12}>
-  <RadioGroup
-    aria-label="mode"
-    name="mode"
-    value={mode}
-    onChange={(event) => setMode(event.target.value)}
-  >
-    <FormControlLabel value="insert" control={<Radio />} label="Insert Mode" />
-    <FormControlLabel value="delete" control={<Radio />} label="Delete Mode" />
-  </RadioGroup>
-</Grid>
-<Grid item xs={12}>
-  <Button variant="contained" color="primary" onClick={handleInsertRolesPermissions} disabled={mode === 'delete'}>
-    Insert Roles and Permissions
-  </Button>
-  <Button variant="contained" color="secondary" onClick={handleRemovePermissions} disabled={mode === 'insert'}>
-    Remove Permissions
-  </Button>
-</Grid>
+          <FormControlLabel value="insert" control={<Radio />} label="Insert Mode" />
+          <FormControlLabel value="delete" control={<Radio />} label="Delete Mode" />
+        </RadioGroup>
+      </Grid>
+      <Grid item xs={12}>
+        <Button variant="contained" color="primary" onClick={handleInsertRolesPermissions} disabled={mode === 'delete'}>
+          Insert Roles and Permissions
+        </Button>
+        <Button variant="contained" color="secondary" onClick={handleRemovePermissions} disabled={mode === 'insert'}>
+          Remove Permissions
+        </Button>
+      </Grid>
 
-<Grid item xs={12}>
-  {assignedPermissions.length === 0 ? (
-    <div>
-      <InputLabel>No permission IDs associated with the selected role.</InputLabel>
-    </div>
-  ) : (
-    <div>
-      <InputLabel>Permission IDs:</InputLabel>
-      {assignedPermissions.map((permissionID) => (
-        <Chip key={permissionID} label={permissionID} style={{ margin: '2px' }} />
-      ))}
-    </div>
-  )}
-</Grid>
+      <Grid item xs={12}>
+        {assignedPermissions.length === 0 ? (
+          <div>
+            <InputLabel>No permission IDs associated with the selected role.</InputLabel>
+          </div>
+        ) : (
+          <div>
+            <InputLabel>Permission IDs:</InputLabel>
+            {assignedPermissions.map((permissionID) => (
+              <Chip key={permissionID} label={permissionID} style={{ margin: '2px' }} />
+            ))}
+          </div>
+        )}
+      </Grid>
 
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        message="New roles and permissions added"
+      />
 
-  <Snackbar
-    open={snackbarOpen}
-    autoHideDuration={6000}
-    onClose={handleSnackbarClose}
-    message="New roles and permissions added"
-  />
-  
+      <Button component={Link} to="/displayrolespermissionstable" variant="contained" color="primary" style={{ marginTop: '5%' }}>
+        Show roles and permissions table
+      </Button>
 
-<Button component={Link} to="/displayrolespermissionstable" variant="contained" color="primary" style={{ marginTop: '5%' }}>
-  Show roles and permissions table
-</Button>
-
-<Link to={'/nav'}>
-  <button>
-    nav
-  </button>
-</Link>
-</Container>
-    );
-};
+      <Link to="/nav">
+        <button>
+          nav
+        </button>
+      </Link>
+    </Container>
+  );
+}
 
 export default RolesPermissionsDropdown;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-               

@@ -1,4 +1,4 @@
-import { Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import {
@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 
-const ProfileForm = () => {
+function ProfileForm() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
     about: '',
@@ -43,12 +43,12 @@ const ProfileForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-      // Add user_id to the profile data
-      const dataWithUserId = {
-        user_id,
-        ...profile,
-      };
+
+    // Add user_id to the profile data
+    const dataWithUserId = {
+      user_id,
+      ...profile,
+    };
 
     // Send the preferences data to the server
     try {
@@ -66,7 +66,6 @@ const ProfileForm = () => {
   };
 
   return (
-    <>
     <Container maxWidth="xs">
       <Paper elevation={3} style={{ padding: '20px' }}>
         <Typography variant="h5">Profile Form</Typography>
@@ -185,15 +184,15 @@ const ProfileForm = () => {
               />
             </Grid>
             <Grid item xs={12}>
-                <TextField
-                  name="salary"
-                  variant="outlined"
-                  fullWidth
-                  label="Salary (per annum)" // Label for salary input
-                  value={profile.salary}
-                  onChange={handleInputChange}
-                />
-              </Grid>
+              <TextField
+                name="salary"
+                variant="outlined"
+                fullWidth
+                label="Salary (per annum)" // Label for salary input
+                value={profile.salary}
+                onChange={handleInputChange}
+              />
+            </Grid>
           </Grid>
           <Button
             type="submit"
@@ -205,14 +204,13 @@ const ProfileForm = () => {
           </Button>
         </form>
       </Paper>
-            <Link to={'/nav'}>
-            <button>
-                    Nav Bar
-                </button>
-            </Link>
+      <Link to="/nav">
+        <button>
+          Nav Bar
+        </button>
+      </Link>
     </Container>
-    </>            
   );
-};
+}
 
 export default ProfileForm;

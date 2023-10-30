@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom';
 
 function InsertImageToDB() {
   const handleInsertImage = () => {
@@ -28,11 +28,11 @@ function InsertImageToDB() {
       >
         Insert Image to Database
       </Button>
-      <Link to={'/nav'}>
+      <Link to="/nav">
         <button>
-            nav
+          nav
         </button>
-        </Link>
+      </Link>
     </div>
   );
 }

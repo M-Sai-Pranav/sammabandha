@@ -13,9 +13,9 @@ import {
   Grid,
 } from '@material-ui/core';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 
-const RolesPermissionsTable = () => {
+function RolesPermissionsTable() {
   const [roles, setRoles] = useState([]);
   const [permissions, setPermissions] = useState([]);
   const [newRole, setNewRole] = useState('');
@@ -121,13 +121,13 @@ const RolesPermissionsTable = () => {
           </TableContainer>
         </Grid>
       </Grid>
-      <Link to={'/nav'}>
+      <Link to="/nav">
         <button>
-            nav
+          nav
         </button>
-        </Link>
+      </Link>
     </Container>
   );
-};
+}
 
 export default RolesPermissionsTable;

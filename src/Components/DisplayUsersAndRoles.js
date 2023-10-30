@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const UserRolesList = () => {
+function UserRolesList() {
   const [userRoles, setUserRoles] = useState([]);
 
   useEffect(() => {
@@ -42,18 +42,18 @@ const UserRolesList = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Link to={'/nav'}>
+      <Link to="/nav">
         <button>
-            nav
+          nav
         </button>
-        </Link>
-        <Link to={'/usersansroles'}>
+      </Link>
+      <Link to="/usersansroles">
         <button>
-        UsersRolesDropdown 
+          UsersRolesDropdown
         </button>
-        </Link>
+      </Link>
     </Container>
   );
-};
+}
 
 export default UserRolesList;

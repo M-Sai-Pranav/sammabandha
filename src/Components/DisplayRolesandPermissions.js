@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import {
   Container,
@@ -13,7 +12,7 @@ import {
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const RolePermissionsList = () => {
+function RolePermissionsList() {
   const [rolePermissions, setRolePermissions] = useState([]);
 
   useEffect(() => {
@@ -43,18 +42,18 @@ const RolePermissionsList = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Link to={'/nav'}>
+      <Link to="/nav">
         <button>
           nav
         </button>
       </Link>
-      <Link to={'/setrolesandpermissions'}>
+      <Link to="/setrolesandpermissions">
         <button>
           Set Roles and Permissions
         </button>
       </Link>
     </Container>
   );
-};
+}
 
 export default RolePermissionsList;

@@ -1,13 +1,14 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom';
 
 import ReactDOM from 'react-dom';
 
-import React, { useState, useEffect} from 'react';
-import { Container, Typography, Button, Paper, Grid } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import {
+  Container, Typography, Button, Paper, Grid,
+} from '@mui/material';
 import axios from 'axios';
 
-
-const PhotoUpload = () => {
+function PhotoUpload() {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const [user_id, setUser_id] = useState(null);
@@ -30,31 +31,29 @@ const PhotoUpload = () => {
       formData.append('user_id', user_id);
       // Send the file to the server using Axios
       axios
-      .post('/api/upload-photo', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        console.log('Server response:', response.data);
-        // Check if the upload was successful, you can customize this condition
-        if (response.status === 200) {
+        .post('/api/upload-photo', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((response) => {
+          console.log('Server response:', response.data);
+          // Check if the upload was successful, you can customize this condition
+          if (response.status === 200) {
           // If successful, navigate to the "Home" route
-          navigate('/home');
-        }
-      
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        if (error.response) {
-          console.error('Response Data:', error.response.data);
-        }
-      });
+            navigate('/home');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          if (error.response) {
+            console.error('Response Data:', error.response.data);
+          }
+        });
     }
   };
 
   return (
-    <>
     <Container maxWidth="xs">
       <Paper elevation={3} style={{ padding: '20px' }}>
         <Typography variant="h5">Upload Your Photo</Typography>
@@ -81,7 +80,9 @@ const PhotoUpload = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography variant="body1">
-                Selected File: {selectedFile ? selectedFile.name : 'None'}
+                Selected File:
+                {' '}
+                {selectedFile ? selectedFile.name : 'None'}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -98,15 +99,13 @@ const PhotoUpload = () => {
           </Grid>
         </form>
       </Paper>
-      <Link to={'/nav'}>
-                <button>
-                        Nav Bar
-                    </button>
-                </Link>
+      <Link to="/nav">
+        <button>
+          Nav Bar
+        </button>
+      </Link>
     </Container>
-    </>
   );
-};
+}
 
 export default PhotoUpload;
-

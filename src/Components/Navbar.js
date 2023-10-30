@@ -1,10 +1,12 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import {
+  AppBar, Toolbar, Typography, Button, IconButton,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 
-const Navigation = () => {
+function Navigation() {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -12,10 +14,10 @@ const Navigation = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Sammabandh 
+          Sammabandh
         </Typography>
         <Button color="inherit" component={Link} to="/">
-            Registration
+          Registration
         </Button>
         <Button color="inherit" component={Link} to="/LoginForm">
           Log In
@@ -33,16 +35,16 @@ const Navigation = () => {
           User Data
         </Button>
         <Button color="inherit" component={Link} to="/BadgeList">
-            Find Matches
+          Find Matches
         </Button>
         <Button color="inherit" component={Link} to="/rolesandpermissions">
-            Roles and Permissions
+          Roles and Permissions
         </Button>
         <Button color="inherit" component={Link} to="/setrolesandpermissions">
-            Set Roles and Permissions
+          Set Roles and Permissions
         </Button>
         <Button color="inherit" component={Link} to="/usersansroles">
-            Users and Roles
+          Users and Roles
         </Button>
         {/* <Button color="inherit" component={Link} to="/displayusersansroles">
             Display Users and Roles
@@ -53,6 +55,6 @@ const Navigation = () => {
       </Toolbar>
     </AppBar>
   );
-};
+}
 
 export default Navigation;

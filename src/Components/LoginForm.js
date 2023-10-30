@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Container, Typography } from '@mui/material';
+import {
+  TextField, Button, Box, Container, Typography,
+} from '@mui/material';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
-
-const LoginForm = () => {
-    const navigate = useNavigate();
+function LoginForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -23,24 +24,23 @@ const LoginForm = () => {
 
   const handleLogin = () => {
     axios.post('/api/login', formData)
-      .then(response => {
+      .then((response) => {
         setMessage(response.data.message);
 
         if (response.status === 200) {
-            // If the login is successful, navigate to the preferences form
-            navigate('/PreferencesForm');
-            console.log(response)
+          // If the login is successful, navigate to the preferences form
+          navigate('/PreferencesForm');
+          console.log(response);
 
-            // Get user_id and username from the response data
+          // Get user_id and username from the response data
           const { user_id, username } = response.data;
 
           // Store user_id and username in local storage
           localStorage.setItem('user_id', user_id);
           localStorage.setItem('username', username);
-
-          }
+        }
       })
-      .catch(error => {
+      .catch((error) => {
         setMessage('Login failed');
       });
   };
@@ -87,13 +87,13 @@ const LoginForm = () => {
           {message}
         </Typography>
       </Box>
-      <Link to={'/nav'}>
+      <Link to="/nav">
         <button>
-            nav
+          nav
         </button>
-        </Link>
+      </Link>
     </Container>
   );
-};
+}
 
 export default LoginForm;
