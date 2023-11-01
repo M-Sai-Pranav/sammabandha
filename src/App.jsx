@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
+import React from 'react';
 
-import Stack from '@mui/material/Stack';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import {
+  BrowserRouter, Routes, Route, Link,
+} from 'react-router-dom';
+
+// import Stack from '@mui/material/Stack';
+import {
+  AppBar, Toolbar, Typography, Button, IconButton,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import Home from './Components/Home';
 import PhotoUpload from './Components/PhotoUpload';
-import Contact from './Components/ProfileForm';
-import Shop from './Components/PreferencesForm';
+// import Contact from './Components/ProfileForm';
+// import Shop from './Components/PreferencesForm';
 import Book from './Components/Book';
-import Item from './Components/RegistrationForm';
+// import Item from './Components/RegistrationForm';
 import RegistrationForm from './Components/RegistrationForm';
 import PreferencesForm from './Components/PreferencesForm';
 import ProfileForm from './Components/ProfileForm';
@@ -22,7 +27,11 @@ import RolesPermissionsDropdown from './Components/RolesPermissionsDropdown';
 import UsersRolesDropdown from './Components/UsersRolesDropdown';
 import UserRolesList from './Components/DisplayUsersAndRoles';
 import RolePermissionsList from './Components/DisplayRolesandPermissions';
-const Navigation = () => {
+
+import NewHome from './Components/New';
+import Home1 from './Components/NewHome';
+
+function Navigation() {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -30,10 +39,10 @@ const Navigation = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Sammabandh 
+          Sammabandh
         </Typography>
         <Button color="inherit" component={Link} to="/">
-            Registration
+          Registration
         </Button>
         <Button color="inherit" component={Link} to="/LoginForm">
           Log In
@@ -51,16 +60,16 @@ const Navigation = () => {
           User Data
         </Button>
         <Button color="inherit" component={Link} to="/BadgeList">
-            Find Matches
+          Find Matches
         </Button>
         <Button color="inherit" component={Link} to="/rolesandpermissions">
-            Roles and Permissions
+          Roles and Permissions
         </Button>
         <Button color="inherit" component={Link} to="/setrolesandpermissions">
-            Set Roles and Permissions
+          Set Roles and Permissions
         </Button>
         <Button color="inherit" component={Link} to="/usersansroles">
-            Users and Roles
+          Users and Roles
         </Button>
         <Button color="inherit" component={Link} to="/book">
           Books
@@ -68,79 +77,120 @@ const Navigation = () => {
       </Toolbar>
     </AppBar>
   );
-};
+}
 
 function App() {
-    return (
-      <BrowserRouter>
-            <Navigation/>
-            <Routes>
-            
-            {/*<Route exact path = '/nav' element = {
+  return (
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+
+        {/* <Route exact path = '/nav' element = {
                   <Navigation/>
-                  
-            }/>*/}
-            <Route exact path = '/home' element = {
-                  <Home/>
-                  
-            }/>
-              
-            <Route exact path='/PhotoUpload' element={
-                <PhotoUpload/>
-            }/>
-            <Route exact path='/PreferencesForm' element={
-                <PreferencesForm/>
-            }/>
-            <Route exact path='/ProfileForm' element={
-                <ProfileForm/>
-            }/>
-            <Route exact path='/book' element={
-                <Book/>
-            }/>
-             <Route exact path='/' element={
-                <RegistrationForm/>
-            }/>
-              <Route exact path='/LoginForm' element={
-                <LoginForm/>
-            }/>
-            BadgeList
-            <Route exact path='/BadgeList' element={
-                <BadgeList/>
-            }/>
-            <Route exact path = '/rolesandpermissions' element = {
-                  <RolesPermissionsTable/>
-                  
-            }/>
-            <Route exact path = '/setrolesandpermissions' element = {
-                  <RolesPermissionsDropdown/>
-                  
-            }/>
-            
-            <Route exact path = '/usersansroles' element = {
-                  <UsersRolesDropdown/>   
-            }/>
 
-            <Route exact path = '/displayusersansroles' element = {
-                  <UserRolesList/>   
-            }/>
+            }/> */}
+        <Route
+          exact
+          path="/home"
+          element={
+            <Home />
 
-            <Route exact path = '/displayrolespermissionstable' element = {
-                  <RolePermissionsList/>   
-            }/>
-            </Routes>
-      </BrowserRouter   >
-    );
-  }
-  
-  export default App;
+            }
+        />
 
+        <Route
+          exact
+          path="/PhotoUpload"
+          element={
+            <PhotoUpload />
+            }
+        />
+        <Route
+          exact
+          path="/PreferencesForm"
+          element={
+            <PreferencesForm />
+            }
+        />
+        <Route
+          exact
+          path="/ProfileForm"
+          element={
+            <ProfileForm />
+            }
+        />
+        <Route
+          exact
+          path="/book"
+          element={
+            <Book />
+            }
+        />
+        <Route
+          exact
+          path="/"
+          element={
+            <RegistrationForm />
+            }
+        />
+        <Route
+          exact
+          path="/LoginForm"
+          element={
+            <LoginForm />
+            }
+        />
+        BadgeList
+        <Route
+          exact
+          path="/BadgeList"
+          element={
+            <BadgeList />
+            }
+        />
+        <Route
+          exact
+          path="/rolesandpermissions"
+          element={
+            <RolesPermissionsTable />
 
+            }
+        />
+        <Route
+          exact
+          path="/setrolesandpermissions"
+          element={
+            <RolesPermissionsDropdown />
 
+            }
+        />
 
+        <Route
+          exact
+          path="/usersansroles"
+          element={
+            <UsersRolesDropdown />
+            }
+        />
 
+        <Route
+          exact
+          path="/displayusersansroles"
+          element={
+            <UserRolesList />
+            }
+        />
 
+        <Route
+          exact
+          path="/displayrolespermissionstable"
+          element={
+            <RolePermissionsList />
+            }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-
-
-
-
+export default App;

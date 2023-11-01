@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-filename-extension */
 import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
@@ -9,16 +10,16 @@ import {
   Paper,
 } from '@mui/material';
 
-function Home() {
+function Home1() {
   const [userData, setUserData] = useState(null);
   const handleGetUserData = async () => {
     // Get the user_id from local storage
-    const user_id = localStorage.getItem('user_id');
+    const userId = localStorage.getItem('user_id');
 
     try {
       const response = await axios.get('/api/get-user-data', {
         params: {
-          user_id,
+          userId,
         },
       });
       setUserData(response.data);
@@ -202,7 +203,7 @@ function Home() {
         )}
       </Paper>
       <Link to="/nav">
-        <button>
+        <button type="button">
           Nav Bar
         </button>
       </Link>
@@ -210,4 +211,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Home1;

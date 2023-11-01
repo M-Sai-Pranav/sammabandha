@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
 import {
   Container,
@@ -39,7 +39,7 @@ function RegistrationForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/register', user); // Adjust the URL as needed
+      const response = await axios.post('http://localhost:9000/api/auth/register', user); // Adjust the URL as needed
       console.log('Response from the server:', response.data);
       // Check if the registration was successful, you can customize this condition
       if (response.status === 200) {
@@ -52,6 +52,7 @@ function RegistrationForm() {
   };
 
   return (
+
     <Container maxWidth="xs">
       <Paper elevation={3} style={{ padding: '20px' }}>
         <Typography variant="h5">Registration Form</Typography>
@@ -162,7 +163,7 @@ function RegistrationForm() {
         </form>
       </Paper>
       <Link to="/nav">
-        <button>
+        <button type="submit">
           Nav Bar
         </button>
       </Link>

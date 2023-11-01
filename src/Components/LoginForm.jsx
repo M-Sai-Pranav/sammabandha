@@ -3,6 +3,7 @@ import {
   TextField, Button, Box, Container, Typography,
 } from '@mui/material';
 import axios from 'axios';
+
 import { useNavigate, Link } from 'react-router-dom';
 
 function LoginForm() {
@@ -23,7 +24,7 @@ function LoginForm() {
   };
 
   const handleLogin = () => {
-    axios.post('/api/login', formData)
+    axios.post('/api/auth/login', formData)
       .then((response) => {
         setMessage(response.data.message);
 
@@ -40,7 +41,7 @@ function LoginForm() {
           localStorage.setItem('username', username);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setMessage('Login failed');
       });
   };
@@ -88,7 +89,7 @@ function LoginForm() {
         </Typography>
       </Box>
       <Link to="/nav">
-        <button>
+        <button type="submit">
           nav
         </button>
       </Link>

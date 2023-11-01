@@ -31,12 +31,12 @@ function RolesPermissionsDropdown() {
 
   useEffect(() => {
     // Fetch roles data from the backend
-    axios.get('/api/get-roles')
+    axios.get('/api/roles-and-permissions/get-roles')
       .then((response) => setRoles(response.data.map((role) => role.role_name)))
       .catch((error) => console.error('Error fetching roles:', error));
 
     // Fetch permissions data from the backend
-    axios.get('/api/get-permissions')
+    axios.get('/api/roles-and-permissions/get-permissions')
       .then((response) => setPermissions(response.data))
       .catch((error) => console.error('Error fetching permissions:', error));
   }, []);
@@ -44,7 +44,7 @@ function RolesPermissionsDropdown() {
   useEffect(() => {
     // Fetch permissions assigned to the selected role
     if (selectedRole) {
-      axios.get(`/api/get-role-permissions/${selectedRole}`)
+      axios.get(`/api/roles-and-permissions/get-permissions-for-selectedrole/${selectedRole}`)
         .then((response) => {
           const permissionIDs = response.data;
 
@@ -58,7 +58,7 @@ function RolesPermissionsDropdown() {
 
           // Make a backend API call to log permission_ids in the backend console
           axios
-            .post('/api/log-permission-ids', {
+            .post('/api/roles-and-permissions/log-permission-ids', {
               role_name: selectedRole,
               permission_ids: permissionIDs,
             })
@@ -86,7 +86,7 @@ function RolesPermissionsDropdown() {
   const updateAssignedPermissions = (roleName) => {
     if (roleName) {
       axios
-        .get(`/api/get-role-permissions/${roleName}`)
+        .get(`/api/roles-and-permissions/get-permissions-for-selectedrole/${roleName}`)
         .then((response) => {
           // Update the assignedPermissions state with the new permission_ids
           setAssignedPermissions(response.data);
@@ -129,7 +129,7 @@ function RolesPermissionsDropdown() {
   const handleInsertRolesPermissions = () => {
     if (mode === 'insert') {
       axios
-        .post('/api/insert-roles-permissions', {
+        .post('/api/roles-and-permissions/insert-roles-permissions', {
           selectedRole,
           selectedPermissions,
         })
@@ -149,7 +149,7 @@ function RolesPermissionsDropdown() {
     if (mode === 'delete') {
       if (selectedRole && selectedPermissions.length > 0) {
         axios
-          .delete('/api/remove-role-permissions', {
+          .delete('/api/roles-and-permissions/remove-role-permissions', {
             data: {
               role_name: selectedRole,
               permissions: selectedPermissions,

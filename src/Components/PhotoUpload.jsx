@@ -30,12 +30,9 @@ function PhotoUpload() {
       formData.append('photo', selectedFile);
       formData.append('user_id', user_id);
       // Send the file to the server using Axios
+      console.log('selectedFile', selectedFile);
       axios
-        .post('/api/upload-photo', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
+        .post('/api/profile/upload-photo', { photo: selectedFile.name })
         .then((response) => {
           console.log('Server response:', response.data);
           // Check if the upload was successful, you can customize this condition

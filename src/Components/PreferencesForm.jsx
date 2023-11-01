@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import React, { useState, useEffect } from 'react';
+
 import {
   Container,
   Typography,
@@ -11,54 +12,50 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 
-function ProfileForm() {
+function PreferencesForm() {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState({
-    about: '',
-    occupation: '',
-    education: '',
-    location: '',
+  const [preferences, setPreferences] = useState({
+    min_age: '',
+    max_age: '',
+    min_height: '',
+    max_height: '',
     religion: '',
     caste: '',
+    location: '',
     marital_status: '',
-    height: '',
-    weight: '',
-    hobbies: '',
-    interests: '',
-    salary: '', // Add salary field
   });
 
-  const [user_id, setUser_id] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   // Retrieve user_id from local storage when the component mounts
   useEffect(() => {
     const storedUserId = localStorage.getItem('user_id');
-    setUser_id(storedUserId);
+    setUserId(storedUserId);
   }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setProfile({ ...profile, [name]: value });
+    setPreferences({ ...preferences, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Add user_id to the profile data
+    // Add user_id to the preferences data
     const dataWithUserId = {
-      user_id,
-      ...profile,
+      userId,
+      ...preferences,
     };
 
     // Send the preferences data to the server
     try {
-      const response = await axios.post('/api/save-profile', dataWithUserId);
+      const response = await axios.post('http://localhost:9000/api/preference/save-preferences', dataWithUserId);
       console.log('Server response:', response.data);
 
       // Check if the preferences were successfully saved, you can customize this condition
       if (response.status === 200) {
         // If successful, navigate to the "ProfileForm" route
-        navigate('/PhotoUpload');
+        navigate('/ProfileForm');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -68,128 +65,86 @@ function ProfileForm() {
   return (
     <Container maxWidth="xs">
       <Paper elevation={3} style={{ padding: '20px' }}>
-        <Typography variant="h5">Profile Form</Typography>
+        <Typography variant="h5">Preferences Form</Typography>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
-                name="about"
-                multiline
-                rows={3}
+                name="min_age"
                 variant="outlined"
                 fullWidth
-                label="About Me"
-                value={profile.about}
+                label="Minimum Age"
+                value={preferences.min_age}
                 onChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
-                name="occupation"
+                name="max_age"
                 variant="outlined"
                 fullWidth
-                label="Occupation"
-                value={profile.occupation}
+                label="Maximum Age"
+                value={preferences.max_age}
                 onChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
-                name="education"
+                name="min_height"
                 variant="outlined"
                 fullWidth
-                label="Education"
-                value={profile.education}
+                label="Minimum Height"
+                value={preferences.min_height}
                 onChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
-                name="location"
+                name="max_height"
                 variant="outlined"
                 fullWidth
-                label="Location"
-                value={profile.location}
+                label="Maximum Height"
+                value={preferences.max_height}
                 onChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 name="religion"
                 variant="outlined"
                 fullWidth
                 label="Religion"
-                value={profile.religion}
+                value={preferences.religion}
                 onChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 name="caste"
                 variant="outlined"
                 fullWidth
                 label="Caste"
-                value={profile.caste}
+                value={preferences.caste}
                 onChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
+              <TextField
+                name="location"
+                variant="outlined"
+                fullWidth
+                label="Location"
+                value={preferences.location}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
               <TextField
                 name="marital_status"
                 variant="outlined"
                 fullWidth
                 label="Marital Status"
-                value={profile.marital_status}
-                onChange={handleInputChange}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                name="height"
-                variant="outlined"
-                fullWidth
-                label="Height"
-                value={profile.height}
-                onChange={handleInputChange}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                name="weight"
-                variant="outlined"
-                fullWidth
-                label="Weight"
-                value={profile.weight}
-                onChange={handleInputChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                name="hobbies"
-                variant="outlined"
-                fullWidth
-                label="Hobbies"
-                value={profile.hobbies}
-                onChange={handleInputChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                name="interests"
-                variant="outlined"
-                fullWidth
-                label="Interests"
-                value={profile.interests}
-                onChange={handleInputChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                name="salary"
-                variant="outlined"
-                fullWidth
-                label="Salary (per annum)" // Label for salary input
-                value={profile.salary}
+                value={preferences.marital_status}
                 onChange={handleInputChange}
               />
             </Grid>
@@ -200,12 +155,12 @@ function ProfileForm() {
             color="primary"
             fullWidth
           >
-            Save Profile
+            Save Preferences
           </Button>
         </form>
       </Paper>
       <Link to="/nav">
-        <button>
+        <button type="submit">
           Nav Bar
         </button>
       </Link>
@@ -213,4 +168,4 @@ function ProfileForm() {
   );
 }
 
-export default ProfileForm;
+export default PreferencesForm;

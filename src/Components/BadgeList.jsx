@@ -67,7 +67,7 @@ function BadgeList() {
 
   const handleFindMatches = async () => {
     try {
-      const response = await axios.post('/api/search-profiles', formData);
+      const response = await axios.post('http://localhost:9000/api/profile/search-profiles', formData);
       setSearchResults(response.data);
     } catch (error) {
       console.error(error);

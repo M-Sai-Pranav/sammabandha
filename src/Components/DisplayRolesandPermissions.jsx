@@ -17,7 +17,7 @@ function RolePermissionsList() {
 
   useEffect(() => {
     // Fetch role permissions data from the backend
-    axios.get('/api/display-role-permissions')
+    axios.get('/api/roles-and-permissions/display-role-permissions')
       .then((response) => setRolePermissions(response.data))
       .catch((error) => console.error('Error fetching role permissions:', error));
   }, []);

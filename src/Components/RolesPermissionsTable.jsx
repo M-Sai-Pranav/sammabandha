@@ -23,11 +23,11 @@ function RolesPermissionsTable() {
 
   useEffect(() => {
     // Fetch roles and permissions data from the backend
-    axios.get('/api/get-roles')
+    axios.get('/api/roles-and-permissions/get-roles')
       .then((response) => setRoles(response.data.map((role) => role.role_name)))
       .catch((error) => console.error('Error fetching roles:', error));
 
-    axios.get('/api/get-permissions')
+    axios.get('/api/roles-and-permissions/get-permissions')
       .then((response) => setPermissions(response.data.map((permission) => permission.permission_name)))
       .catch((error) => console.error('Error fetching permissions:', error));
   }, []);

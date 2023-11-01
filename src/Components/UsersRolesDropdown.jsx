@@ -29,11 +29,11 @@ function UsersRolesDropdown() {
   const [assignedRoles, setAssignedRoles] = useState([]); // To store assigned roles for the selected user
 
   useEffect(() => {
-    axios.get('/api/get-users')
+    axios.get('/api/users/get-users')
       .then((response) => setUsers(response.data))
       .catch((error) => console.error('Error fetching users:', error));
 
-    axios.get('/api/get-roles')
+    axios.get('/api/roles-and-permissions/get-roles')
       .then((response) => setRoles(response.data))
       .catch((error) => console.error('Error fetching roles:', error));
   }, []);
@@ -41,7 +41,7 @@ function UsersRolesDropdown() {
   useEffect(() => {
     // Fetch roles assigned to the selected user
     if (selectedUser) {
-      axios.get(`/api/get-user-roles/${selectedUser}`)
+      axios.get(`/api/users/get-user-roles/${selectedUser}`)
         .then((response) => setAssignedRoles(response.data))
         .catch((error) => console.error('Error fetching assigned roles:', error));
     } else {
@@ -57,7 +57,7 @@ function UsersRolesDropdown() {
 
     if (userId) {
       // Fetch roles assigned to the selected user
-      axios.get(`/api/get-user-roles/${userId}`)
+      axios.get(`/api/users/get-user-roles/${userId}`)
         .then((response) => {
           const roleIDs = response.data;
 
@@ -71,7 +71,7 @@ function UsersRolesDropdown() {
 
           // Make a backend API call to log role_ids in the backend console
           axios
-            .post('/api/log-role-ids', {
+            .post('/api/users/log-role-ids', {
               user_id: userId,
               role_ids: roleIDs,
             })
@@ -99,7 +99,7 @@ function UsersRolesDropdown() {
   const updateAssignedRoles = (userId) => {
     if (userId) {
       axios
-        .get(`/api/get-user-roles/${userId}`)
+        .get(`/api/users/get-user-roles/${userId}`)
         .then((response) => {
           // Update the assignedRoles state with the new role_ids
           setAssignedRoles(response.data);
@@ -135,7 +135,7 @@ function UsersRolesDropdown() {
   const handleInsertUserRoles = () => {
     if (mode === 'insert') {
       axios
-        .post('/api/insert-user-roles', {
+        .post('/api/users/insert-user-roles', {
           selectedUser,
           selectedRoles,
         })
@@ -155,7 +155,7 @@ function UsersRolesDropdown() {
     if (mode === 'delete') {
       if (selectedUser && selectedRoles.length > 0) {
         axios
-          .delete('/api/remove-user-roles', {
+          .delete('/api/users/remove-user-roles', {
             data: {
               user_id: selectedUser,
               roles: selectedRoles,

@@ -17,7 +17,7 @@ function UserRolesList() {
 
   useEffect(() => {
     // Fetch user roles data from the backend
-    axios.get('/api/get-user-roles')
+    axios.get('/api/users/get-user-roles-table')
       .then((response) => setUserRoles(response.data))
       .catch((error) => console.error('Error fetching user roles:', error));
   }, []);
