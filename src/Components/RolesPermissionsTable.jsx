@@ -34,10 +34,10 @@ function RolesPermissionsTable() {
 
   const handleAddRole = () => {
     if (newRole) {
-      axios.post('/api/add-role', { role: newRole })
+      axios.post('/api/roles-and-permissions/add-role', { role: newRole })
         .then(() => {
           setNewRole('');
-          axios.get('/api/get-roles')
+          axios.get('/api/roles-and-permissions/get-roles')
             .then((response) => setRoles(response.data.map((role) => role.role_name)))
             .catch((error) => console.error('Error fetching roles:', error));
         })
@@ -47,10 +47,10 @@ function RolesPermissionsTable() {
 
   const handleAddPermission = () => {
     if (newPermission) {
-      axios.post('/api/add-permission', { permission: newPermission })
+      axios.post('/api/roles-and-permissions/add-permission', { permission: newPermission })
         .then(() => {
           setNewPermission('');
-          axios.get('/api/get-permissions')
+          axios.get('/api/roles-and-permissions/get-permissions')
             .then((response) => setPermissions(response.data.map((permission) => permission.permission_name)))
             .catch((error) => console.error('Error adding permission:', error));
         })

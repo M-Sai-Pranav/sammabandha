@@ -30,6 +30,7 @@ import RolePermissionsList from './Components/DisplayRolesandPermissions';
 
 import NewHome from './Components/New';
 import Home1 from './Components/NewHome';
+import OtpForm from './Components/OTP';
 
 function Navigation() {
   return (
@@ -70,6 +71,9 @@ function Navigation() {
         </Button>
         <Button color="inherit" component={Link} to="/usersansroles">
           Users and Roles
+        </Button>
+        <Button color="inherit" component={Link} to="/otp">
+          OTP
         </Button>
         <Button color="inherit" component={Link} to="/book">
           Books
@@ -186,6 +190,13 @@ function App() {
           path="/displayrolespermissionstable"
           element={
             <RolePermissionsList />
+            }
+        />
+        <Route
+          exact
+          path="/otp"
+          element={
+            <OtpForm />
             }
         />
       </Routes>

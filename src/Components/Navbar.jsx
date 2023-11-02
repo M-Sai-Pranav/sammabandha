@@ -4,7 +4,6 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 
 function Navigation() {
   return (
@@ -45,6 +44,9 @@ function Navigation() {
         </Button>
         <Button color="inherit" component={Link} to="/usersansroles">
           Users and Roles
+        </Button>
+        <Button color="inherit" component={Link} to="/otp">
+          OTP
         </Button>
         {/* <Button color="inherit" component={Link} to="/displayusersansroles">
             Display Users and Roles
