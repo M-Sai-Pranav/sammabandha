@@ -39,12 +39,13 @@ function RegistrationForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:9000/api/auth/register', user); // Adjust the URL as needed
+      const response = await axios.post('/api/auth/register', user); // Adjust the URL as needed
       console.log('Response from the server:', response.data);
+      localStorage.setItem('userEmail', user.email);
       // Check if the registration was successful, you can customize this condition
       if (response.status === 200) {
         // If successful, navigate to the "PreferencesForm" route
-        navigate('/LoginForm');
+        navigate('/Login');
       }
     } catch (error) {
       console.error('Error sending data:', error);
@@ -162,10 +163,8 @@ function RegistrationForm() {
           </Button>
         </form>
       </Paper>
-      <Link to="/nav">
-        <button type="submit">
-          Nav Bar
-        </button>
+      <Link to="/Login" variant="subtitle1">
+        Back to LogIn page
       </Link>
     </Container>
   );

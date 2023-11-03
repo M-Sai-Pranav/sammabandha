@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter, Routes, Route, Link,
 } from 'react-router-dom';
@@ -31,8 +30,14 @@ import RolePermissionsList from './Components/DisplayRolesandPermissions';
 import NewHome from './Components/New';
 import Home1 from './Components/NewHome';
 import OtpForm from './Components/OTP';
+import MailOTP from './Components/MailOTP';
+import NewLogIn from './Components/NewLogIn';
+import DateNow from './Components/DateNow';
 
 function Navigation() {
+  useEffect(() => {
+    console.log(window.location.pathname);
+  }, []);
   return (
     <AppBar position="static">
       <Toolbar>
@@ -42,10 +47,10 @@ function Navigation() {
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           Sammabandh
         </Typography>
-        <Button color="inherit" component={Link} to="/">
+        <Button color="inherit" component={Link} to="/Register">
           Registration
         </Button>
-        <Button color="inherit" component={Link} to="/LoginForm">
+        <Button color="inherit" component={Link} to="/Login">
           Log In
         </Button>
         <Button color="inherit" component={Link} to="/PreferencesForm">
@@ -84,15 +89,25 @@ function Navigation() {
 }
 
 function App() {
+  const [header, setHeader] = useState(false);
+  const displayHeader = () => {
+    console.log(window.location.pathname);
+    if (['/register', '/Login'].includes(window.location.pathname)) {
+      setHeader(true);
+    } else {
+      setHeader(false);
+    }
+  };
+  useEffect(() => {
+    displayHeader(window.location.pathname);
+  }, [window.location.pathname]);
   return (
     <BrowserRouter>
       <Navigation />
+      {
+        (header) && <Navigation />
+      }
       <Routes>
-
-        {/* <Route exact path = '/nav' element = {
-                  <Navigation/>
-
-            }/> */}
         <Route
           exact
           path="/home"
@@ -125,6 +140,13 @@ function App() {
         />
         <Route
           exact
+          path="/"
+          element={
+            <DateNow />
+            }
+        />
+        <Route
+          exact
           path="/book"
           element={
             <Book />
@@ -132,19 +154,11 @@ function App() {
         />
         <Route
           exact
-          path="/"
+          path="/Login"
           element={
-            <RegistrationForm />
+            <NewLogIn />
             }
         />
-        <Route
-          exact
-          path="/LoginForm"
-          element={
-            <LoginForm />
-            }
-        />
-        BadgeList
         <Route
           exact
           path="/BadgeList"
@@ -194,9 +208,9 @@ function App() {
         />
         <Route
           exact
-          path="/otp"
+          path="/Register"
           element={
-            <OtpForm />
+            <RegistrationForm />
             }
         />
       </Routes>

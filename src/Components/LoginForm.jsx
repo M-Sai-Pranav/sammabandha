@@ -29,16 +29,22 @@ function LoginForm() {
         setMessage(response.data.message);
 
         if (response.status === 200) {
-          // If the login is successful, navigate to the preferences form
-          navigate('/PreferencesForm');
-          console.log(response);
+          const { user_id, username, loginCount } = response.data;
+          console.log(response.data);
+          if (loginCount === 1) {
+            // First-time login, navigate to PreferencesForm and update loginCount
+            navigate('/PreferencesForm');
+            console.log(response);
 
-          // Get user_id and username from the response data
-          const { user_id, username } = response.data;
-
-          // Store user_id and username in local storage
-          localStorage.setItem('user_id', user_id);
-          localStorage.setItem('username', username);
+            // Get user_id and username from the response data
+            localStorage.setItem('user_id', user_id);
+            localStorage.setItem('username', username);
+          } else {
+            localStorage.setItem('user_id', user_id);
+            localStorage.setItem('username', username);
+            // Subsequent login, navigate to BadgeList
+            navigate('/BadgeList');
+          }
         }
       })
       .catch(() => {

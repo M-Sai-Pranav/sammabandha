@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
   card: {
     marginBottom: theme.spacing(2),
   },
+  profilePicture: {
+    maxWidth: '100%',
+    height: 'auto',
+  },
 }));
 
 function BadgeList() {
@@ -44,10 +48,10 @@ function BadgeList() {
     religion: '',
     caste: '',
     marital_status: '',
-    minHeight: '', // Add minHeight attribute
-    maxHeight: '', // Add maxHeight attribute
-    minSalary: '', // Add minSalary attribute
-    maxSalary: '', // Add maxSalary attribute
+    minHeight: '',
+    maxHeight: '',
+    minSalary: '',
+    maxSalary: '',
   });
   const [searchResults, setSearchResults] = useState([]);
 
@@ -67,7 +71,7 @@ function BadgeList() {
 
   const handleFindMatches = async () => {
     try {
-      const response = await axios.post('http://localhost:9000/api/profile/search-profiles', formData);
+      const response = await axios.post('/api/profile/search-profiles', formData);
       setSearchResults(response.data);
     } catch (error) {
       console.error(error);
@@ -113,62 +117,79 @@ function BadgeList() {
               <CardContent>
                 <Typography variant="h6">
                   About:
+                  {' '}
                   {result.about}
                 </Typography>
                 <Typography>
                   Occupation:
+                  {' '}
                   {result.occupation}
                 </Typography>
                 <Typography>
                   Education:
+                  {' '}
                   {result.education}
                 </Typography>
                 <Typography>
                   Location:
+                  {' '}
                   {result.location}
                 </Typography>
                 <Typography>
                   Religion:
+                  {' '}
                   {result.religion}
                 </Typography>
                 <Typography>
                   Caste:
+                  {' '}
                   {result.caste}
                 </Typography>
                 <Typography>
                   Marital Status:
+                  {' '}
                   {result.marital_status}
                 </Typography>
                 <Typography>
                   Height:
+                  {' '}
                   {result.height}
                 </Typography>
                 <Typography>
                   Weight:
+                  {' '}
                   {result.weight}
                 </Typography>
                 <Typography>
                   Salary:
+                  {' '}
                   {result.salary}
                 </Typography>
                 <Typography>
                   Hobbies:
+                  {' '}
                   {result.hobbies}
                 </Typography>
                 <Typography>
                   Interests:
+                  {' '}
                   {result.interests}
                 </Typography>
+                {result.profile_picture && (
+                  <div>
+                    <strong>Profile Picture:</strong>
+                    <img
+                      src={result.profile_picture}
+                      alt="Profile"
+                      className={classes.profilePicture}
+                    />
+                  </div>
+                )}
               </CardContent>
             </Card>
           </Grid>
         ))}
       </Grid>
-      <Link to="/nav">
-        <button style={{ marginTop: '5%' }}>
-          nav
-        </button>
-      </Link>
     </Container>
   );
 }

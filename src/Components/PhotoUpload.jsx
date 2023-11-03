@@ -11,7 +11,7 @@ import axios from 'axios';
 function PhotoUpload() {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [user_id, setUser_id] = useState(null);
+  const [userID, setUser_id] = useState(null);
 
   // Retrieve user_id from local storage when the component mounts
   useEffect(() => {
@@ -27,12 +27,13 @@ function PhotoUpload() {
   const handleUpload = () => {
     if (selectedFile) {
       const formData = new FormData();
-      formData.append('photo', selectedFile);
-      formData.append('user_id', user_id);
+      formData.append('file', selectedFile);
+      formData.append('userID', userID);
       // Send the file to the server using Axios
       console.log('selectedFile', selectedFile);
+      console.log(userID);
       axios
-        .post('/api/profile/upload-photo', { photo: selectedFile.name })
+        .post('/api/profile/upload-photo', formData)
         .then((response) => {
           console.log('Server response:', response.data);
           // Check if the upload was successful, you can customize this condition

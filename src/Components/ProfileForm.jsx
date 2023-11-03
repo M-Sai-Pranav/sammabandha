@@ -52,7 +52,7 @@ function ProfileForm() {
 
     // Send the preferences data to the server
     try {
-      const response = await axios.post('http://localhost:9000/api/profile/save-profile', dataWithUserId);
+      const response = await axios.post('/api/profile/save-profile', dataWithUserId);
       console.log('Server response:', response.data);
 
       // Check if the preferences were successfully saved, you can customize this condition

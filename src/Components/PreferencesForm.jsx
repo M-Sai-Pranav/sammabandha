@@ -49,7 +49,7 @@ function PreferencesForm() {
 
     // Send the preferences data to the server
     try {
-      const response = await axios.post('http://localhost:9000/api/preference/save-preferences', dataWithUserId);
+      const response = await axios.post('/api/preference/save-preferences', dataWithUserId);
       console.log('Server response:', response.data);
 
       // Check if the preferences were successfully saved, you can customize this condition

@@ -13,15 +13,16 @@ function Home() {
   const [userData, setUserData] = useState(null);
   const handleGetUserData = async () => {
     // Get the user_id from local storage
-    const user_id = localStorage.getItem('user_id');
+    const userID = localStorage.getItem('user_id');
 
     try {
-      const response = await axios.get('http://localhost:9000/api/users/getUserData', {
+      const response = await axios.get('/api/users/getUserData', {
         params: {
-          user_id,
+          userID,
         },
       });
       setUserData(response.data);
+      console.log('response.data', response.data);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
@@ -180,22 +181,22 @@ function Home() {
             <div>
               <strong>Religion:</strong>
               {' '}
-              {userData.religion}
+              {userData.pref_religion}
             </div>
             <div>
               <strong>Caste:</strong>
               {' '}
-              {userData.caste}
+              {userData.pref_caste}
             </div>
             <div>
               <strong>Location:</strong>
               {' '}
-              {userData.location}
+              {userData.pref_location}
             </div>
             <div>
               <strong>Marital Status:</strong>
               {' '}
-              {userData.marital_status}
+              {userData.pref_marital_status}
             </div>
             {/* Add more fields from the 'preferences' table as needed */}
           </div>

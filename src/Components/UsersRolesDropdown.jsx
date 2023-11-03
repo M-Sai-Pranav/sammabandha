@@ -157,7 +157,7 @@ function UsersRolesDropdown() {
         axios
           .delete('/api/users/remove-user-roles', {
             data: {
-              user_id: selectedUser,
+              userID: selectedUser,
               roles: selectedRoles,
             },
           })
