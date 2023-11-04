@@ -11,7 +11,6 @@ import {
   Grid,
 } from '@material-ui/core';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   badge: {
@@ -71,7 +70,12 @@ function BadgeList() {
 
   const handleFindMatches = async () => {
     try {
-      const response = await axios.post('/api/profile/search-profiles', formData);
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
+      const response = await axios.post('/api/profile/search-profiles', formData, { headers });
       setSearchResults(response.data);
     } catch (error) {
       console.error(error);

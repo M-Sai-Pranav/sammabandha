@@ -76,11 +76,6 @@ function Book() {
           </Grid>
         ))}
       </Grid>
-      <Link to="/nav">
-        <button>
-          nav
-        </button>
-      </Link>
     </div>
   );
 }

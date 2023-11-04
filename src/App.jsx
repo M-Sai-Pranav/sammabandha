@@ -29,10 +29,9 @@ import RolePermissionsList from './Components/DisplayRolesandPermissions';
 
 import NewHome from './Components/New';
 import Home1 from './Components/NewHome';
-import OtpForm from './Components/OTP';
-import MailOTP from './Components/MailOTP';
 import NewLogIn from './Components/NewLogIn';
 import DateNow from './Components/DateNow';
+import VerifyRegistration from './Components/VerifyRegistration';
 
 function Navigation() {
   useEffect(() => {
@@ -105,7 +104,7 @@ function App() {
     <BrowserRouter>
       <Navigation />
       {
-        (header) && <Navigation />
+        false && (header) && <Navigation />
       }
       <Routes>
         <Route
@@ -212,6 +211,11 @@ function App() {
           element={
             <RegistrationForm />
             }
+        />
+        <Route
+          exact
+          path="/verifyregistration"
+          element={<VerifyRegistration />}
         />
       </Routes>
     </BrowserRouter>
