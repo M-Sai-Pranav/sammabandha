@@ -16,8 +16,13 @@ function UserRolesList() {
   const [userRoles, setUserRoles] = useState([]);
 
   useEffect(() => {
+    const authToken = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+
+    };
     // Fetch user roles data from the backend
-    axios.get('/api/users/get-user-roles-table')
+    axios.get('/api/users/get-user-roles-table', { headers })
       .then((response) => setUserRoles(response.data))
       .catch((error) => console.error('Error fetching user roles:', error));
   }, []);
@@ -42,13 +47,8 @@ function UserRolesList() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Link to="/nav">
-        <button>
-          nav
-        </button>
-      </Link>
       <Link to="/usersansroles">
-        <button>
+        <button type="submit">
           UsersRolesDropdown
         </button>
       </Link>

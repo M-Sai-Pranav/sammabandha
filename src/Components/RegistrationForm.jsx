@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-// import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
 import {
   Container,
@@ -21,7 +20,7 @@ function RegistrationForm() {
     last_name: '',
     gender: '',
     date_of_birth: '',
-    mobile_number: '', // Added mobile_number
+    mobile_number: '',
     profile_picture: null,
   });
 
@@ -39,21 +38,15 @@ function RegistrationForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/auth/register', user); // Adjust the URL as needed
+      const response = await axios.post('/api/auth/register', user);
       console.log('Response from the server:', response.data);
-      localStorage.setItem('userEmail', user.email);
-      // Check if the registration was successful, you can customize this condition
-      if (response.status === 200) {
-        // If successful, navigate to the "PreferencesForm" route
-        navigate('/Login');
-      }
+      console.log('mail sent');
     } catch (error) {
       console.error('Error sending data:', error);
     }
   };
 
   return (
-
     <Container maxWidth="xs">
       <Paper elevation={3} style={{ padding: '20px' }}>
         <Typography variant="h5">Registration Form</Typography>
@@ -167,6 +160,7 @@ function RegistrationForm() {
         Back to LogIn page
       </Link>
     </Container>
+
   );
 }
 

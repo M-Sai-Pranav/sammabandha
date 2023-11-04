@@ -17,7 +17,11 @@ function RolePermissionsList() {
 
   useEffect(() => {
     // Fetch role permissions data from the backend
-    axios.get('/api/roles-and-permissions/display-role-permissions')
+    const authToken = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+    };
+    axios.get('/api/roles-and-permissions/display-role-permissions', { headers })
       .then((response) => setRolePermissions(response.data))
       .catch((error) => console.error('Error fetching role permissions:', error));
   }, []);
@@ -42,13 +46,8 @@ function RolePermissionsList() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Link to="/nav">
-        <button>
-          nav
-        </button>
-      </Link>
       <Link to="/setrolesandpermissions">
-        <button>
+        <button type="submit">
           Set Roles and Permissions
         </button>
       </Link>

@@ -22,22 +22,33 @@ function RolesPermissionsTable() {
   const [newPermission, setNewPermission] = useState('');
 
   useEffect(() => {
+    const authToken = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+
+    };
     // Fetch roles and permissions data from the backend
-    axios.get('/api/roles-and-permissions/get-roles')
+    axios.get('/api/roles-and-permissions/get-roles', { headers })
       .then((response) => setRoles(response.data.map((role) => role.role_name)))
       .catch((error) => console.error('Error fetching roles:', error));
 
-    axios.get('/api/roles-and-permissions/get-permissions')
+    axios.get('/api/roles-and-permissions/get-permissions', { headers })
+      // eslint-disable-next-line max-len
       .then((response) => setPermissions(response.data.map((permission) => permission.permission_name)))
       .catch((error) => console.error('Error fetching permissions:', error));
   }, []);
 
   const handleAddRole = () => {
     if (newRole) {
-      axios.post('/api/roles-and-permissions/add-role', { role: newRole })
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
+      axios.post('/api/roles-and-permissions/add-role', { role: newRole }, { headers })
         .then(() => {
           setNewRole('');
-          axios.get('/api/roles-and-permissions/get-roles')
+          axios.get('/api/roles-and-permissions/get-roles', { headers })
             .then((response) => setRoles(response.data.map((role) => role.role_name)))
             .catch((error) => console.error('Error fetching roles:', error));
         })
@@ -47,10 +58,16 @@ function RolesPermissionsTable() {
 
   const handleAddPermission = () => {
     if (newPermission) {
-      axios.post('/api/roles-and-permissions/add-permission', { permission: newPermission })
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
+      axios.post('/api/roles-and-permissions/add-permission', { permission: newPermission }, { headers })
         .then(() => {
           setNewPermission('');
-          axios.get('/api/roles-and-permissions/get-permissions')
+          axios.get('/api/roles-and-permissions/get-permissions', { headers })
+            // eslint-disable-next-line max-len
             .then((response) => setPermissions(response.data.map((permission) => permission.permission_name)))
             .catch((error) => console.error('Error adding permission:', error));
         })
@@ -121,11 +138,6 @@ function RolesPermissionsTable() {
           </TableContainer>
         </Grid>
       </Grid>
-      <Link to="/nav">
-        <button>
-          nav
-        </button>
-      </Link>
     </Container>
   );
 }

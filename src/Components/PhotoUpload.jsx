@@ -32,8 +32,13 @@ function PhotoUpload() {
       // Send the file to the server using Axios
       console.log('selectedFile', selectedFile);
       console.log(userID);
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
       axios
-        .post('/api/profile/upload-photo', formData)
+        .post('/api/profile/upload-photo', formData, { headers })
         .then((response) => {
           console.log('Server response:', response.data);
           // Check if the upload was successful, you can customize this condition
@@ -97,11 +102,6 @@ function PhotoUpload() {
           </Grid>
         </form>
       </Paper>
-      <Link to="/nav">
-        <button>
-          Nav Bar
-        </button>
-      </Link>
     </Container>
   );
 }

@@ -29,19 +29,29 @@ function UsersRolesDropdown() {
   const [assignedRoles, setAssignedRoles] = useState([]); // To store assigned roles for the selected user
 
   useEffect(() => {
-    axios.get('/api/users/get-users')
+    const authToken = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+
+    };
+    axios.get('/api/users/get-users', { headers })
       .then((response) => setUsers(response.data))
       .catch((error) => console.error('Error fetching users:', error));
 
-    axios.get('/api/roles-and-permissions/get-roles')
+    axios.get('/api/roles-and-permissions/get-roles', { headers })
       .then((response) => setRoles(response.data))
       .catch((error) => console.error('Error fetching roles:', error));
   }, []);
 
   useEffect(() => {
     // Fetch roles assigned to the selected user
+    const authToken = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+
+    };
     if (selectedUser) {
-      axios.get(`/api/users/get-user-roles/${selectedUser}`)
+      axios.get(`/api/users/get-user-roles/${selectedUser}`, { headers })
         .then((response) => setAssignedRoles(response.data))
         .catch((error) => console.error('Error fetching assigned roles:', error));
     } else {
@@ -56,8 +66,13 @@ function UsersRolesDropdown() {
     setSelectedUser(userId);
 
     if (userId) {
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
       // Fetch roles assigned to the selected user
-      axios.get(`/api/users/get-user-roles/${userId}`)
+      axios.get(`/api/users/get-user-roles/${userId}`, { headers })
         .then((response) => {
           const roleIDs = response.data;
 
@@ -74,7 +89,7 @@ function UsersRolesDropdown() {
             .post('/api/users/log-role-ids', {
               user_id: userId,
               role_ids: roleIDs,
-            })
+            }, { headers })
             .then((backendResponse) => {
               console.log('Role IDs (Backend):', backendResponse.data);
             })
@@ -98,8 +113,13 @@ function UsersRolesDropdown() {
 
   const updateAssignedRoles = (userId) => {
     if (userId) {
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
       axios
-        .get(`/api/users/get-user-roles/${userId}`)
+        .get(`/api/users/get-user-roles/${userId}`, { headers })
         .then((response) => {
           // Update the assignedRoles state with the new role_ids
           setAssignedRoles(response.data);
@@ -134,11 +154,16 @@ function UsersRolesDropdown() {
 
   const handleInsertUserRoles = () => {
     if (mode === 'insert') {
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
       axios
         .post('/api/users/insert-user-roles', {
           selectedUser,
           selectedRoles,
-        })
+        }, { headers })
         .then((response) => {
           console.log(response.data.message);
           setSnackbarOpen(true);
@@ -154,12 +179,18 @@ function UsersRolesDropdown() {
   const handleRemoveRoles = () => {
     if (mode === 'delete') {
       if (selectedUser && selectedRoles.length > 0) {
+        const authToken = localStorage.getItem('token');
+        const headers = {
+          Authorization: `Bearer ${authToken}`,
+
+        };
         axios
           .delete('/api/users/remove-user-roles', {
             data: {
               userID: selectedUser,
               roles: selectedRoles,
             },
+            headers,
           })
           .then((response) => {
             console.log(response.data.message);

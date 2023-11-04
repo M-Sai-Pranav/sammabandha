@@ -29,9 +29,11 @@ function LoginForm() {
         setMessage(response.data.message);
 
         if (response.status === 200) {
-          const { user_id, username, loginCount } = response.data;
+          const {
+            user_id, username, logincount, token,
+          } = response.data;
           console.log(response.data);
-          if (loginCount === 1) {
+          if (logincount === 1) {
             // First-time login, navigate to PreferencesForm and update loginCount
             navigate('/PreferencesForm');
             console.log(response);
@@ -39,9 +41,11 @@ function LoginForm() {
             // Get user_id and username from the response data
             localStorage.setItem('user_id', user_id);
             localStorage.setItem('username', username);
+            localStorage.setItem('token', token);
           } else {
             localStorage.setItem('user_id', user_id);
             localStorage.setItem('username', username);
+            localStorage.setItem('token', token);
             // Subsequent login, navigate to BadgeList
             navigate('/BadgeList');
           }

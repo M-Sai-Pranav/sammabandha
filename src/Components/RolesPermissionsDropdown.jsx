@@ -26,17 +26,24 @@ function RolesPermissionsDropdown() {
   const [mode, setMode] = useState('insert');
 
   const [assignedPermissions, setAssignedPermissions] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [noPermissionsMessageVisible, setNoPermissionsMessageVisible] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [noRolesMessageVisible, setNoRolesMessageVisible] = useState(true);
 
   useEffect(() => {
+    const authToken = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+
+    };
     // Fetch roles data from the backend
-    axios.get('/api/roles-and-permissions/get-roles')
+    axios.get('/api/roles-and-permissions/get-roles', { headers })
       .then((response) => setRoles(response.data.map((role) => role.role_name)))
       .catch((error) => console.error('Error fetching roles:', error));
 
     // Fetch permissions data from the backend
-    axios.get('/api/roles-and-permissions/get-permissions')
+    axios.get('/api/roles-and-permissions/get-permissions', { headers })
       .then((response) => setPermissions(response.data))
       .catch((error) => console.error('Error fetching permissions:', error));
   }, []);
@@ -44,7 +51,12 @@ function RolesPermissionsDropdown() {
   useEffect(() => {
     // Fetch permissions assigned to the selected role
     if (selectedRole) {
-      axios.get(`/api/roles-and-permissions/get-permissions-for-selectedrole/${selectedRole}`)
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
+      axios.get(`/api/roles-and-permissions/get-permissions-for-selectedrole/${selectedRole}`, { headers })
         .then((response) => {
           const permissionIDs = response.data;
 
@@ -61,7 +73,7 @@ function RolesPermissionsDropdown() {
             .post('/api/roles-and-permissions/log-permission-ids', {
               role_name: selectedRole,
               permission_ids: permissionIDs,
-            })
+            }, { headers })
             .then((backendResponse) => {
               console.log('Permission IDs (Backend):', backendResponse.data);
             })
@@ -85,8 +97,13 @@ function RolesPermissionsDropdown() {
 
   const updateAssignedPermissions = (roleName) => {
     if (roleName) {
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
       axios
-        .get(`/api/roles-and-permissions/get-permissions-for-selectedrole/${roleName}`)
+        .get(`/api/roles-and-permissions/get-permissions-for-selectedrole/${roleName}`, { headers })
         .then((response) => {
           // Update the assignedPermissions state with the new permission_ids
           setAssignedPermissions(response.data);
@@ -128,11 +145,16 @@ function RolesPermissionsDropdown() {
 
   const handleInsertRolesPermissions = () => {
     if (mode === 'insert') {
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
       axios
         .post('/api/roles-and-permissions/insert-roles-permissions', {
           selectedRole,
           selectedPermissions,
-        })
+        }, { headers })
         .then((response) => {
           console.log(response.data.message);
           setSnackbarOpen(true);
@@ -148,12 +170,18 @@ function RolesPermissionsDropdown() {
   const handleRemovePermissions = () => {
     if (mode === 'delete') {
       if (selectedRole && selectedPermissions.length > 0) {
+        const authToken = localStorage.getItem('token');
+        const headers = {
+          Authorization: `Bearer ${authToken}`,
+
+        };
         axios
           .delete('/api/roles-and-permissions/remove-role-permissions', {
             data: {
               role_name: selectedRole,
               permissions: selectedPermissions,
             },
+            headers,
           })
           .then((response) => {
             console.log(response.data.message);
@@ -212,10 +240,11 @@ function RolesPermissionsDropdown() {
                 <div>
                   {selected.map((value) => (
                     <Chip
-                  key={value}
-                  label={value}
-                  onDelete={() => setSelectedPermissions((prev) => prev.filter((p) => p !== value))}
-                />
+                      key={value}
+                      label={value}
+                      // eslint-disable-next-line max-len
+                      onDelete={() => setSelectedPermissions((prev) => prev.filter((p) => p !== value))}
+                    />
                   ))}
                 </div>
               )}
@@ -274,12 +303,6 @@ function RolesPermissionsDropdown() {
       <Button component={Link} to="/displayrolespermissionstable" variant="contained" color="primary" style={{ marginTop: '5%' }}>
         Show roles and permissions table
       </Button>
-
-      <Link to="/nav">
-        <button>
-          nav
-        </button>
-      </Link>
     </Container>
   );
 }

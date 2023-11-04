@@ -1,11 +1,15 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 function InsertImageToDB() {
   const handleInsertImage = () => {
-    axios.get('/api/insertImage')
+    const authToken = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+
+    };
+    axios.get('/api/insertImage', { headers })
       .then((response) => {
         if (response.status === 200) {
           alert('Image inserted successfully.');
@@ -28,11 +32,6 @@ function InsertImageToDB() {
       >
         Insert Image to Database
       </Button>
-      <Link to="/nav">
-        <button>
-          nav
-        </button>
-      </Link>
     </div>
   );
 }

@@ -16,10 +16,17 @@ function Home() {
     const userID = localStorage.getItem('user_id');
 
     try {
+      const authToken = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+
+      };
+
       const response = await axios.get('/api/users/getUserData', {
         params: {
           userID,
         },
+        headers,
       });
       setUserData(response.data);
       console.log('response.data', response.data);
