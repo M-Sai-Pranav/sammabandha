@@ -32,6 +32,8 @@ import Home1 from './Components/NewHome';
 import NewLogIn from './Components/NewLogIn';
 import DateNow from './Components/DateNow';
 import VerifyRegistration from './Components/VerifyRegistration';
+import Plans from './Components/Plans';
+import PlanResult from './Components/PlanResult';
 
 function Navigation() {
   useEffect(() => {
@@ -76,8 +78,8 @@ function Navigation() {
         <Button color="inherit" component={Link} to="/usersansroles">
           Users and Roles
         </Button>
-        <Button color="inherit" component={Link} to="/otp">
-          OTP
+        <Button color="inherit" component={Link} to="/plans">
+          Plans
         </Button>
         <Button color="inherit" component={Link} to="/book">
           Books
@@ -216,6 +218,16 @@ function App() {
           exact
           path="/verifyregistration"
           element={<VerifyRegistration />}
+        />
+        <Route
+          exact
+          path="/plans"
+          element={<Plans />}
+        />
+        <Route
+          exact
+          path="/success/:success/plan/:plan"
+          element={<PlanResult />}
         />
       </Routes>
     </BrowserRouter>

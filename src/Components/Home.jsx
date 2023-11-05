@@ -209,11 +209,6 @@ function Home() {
           </div>
         )}
       </Paper>
-      <Link to="/nav">
-        <button type="button">
-          Nav Bar
-        </button>
-      </Link>
     </Container>
   );
 }
