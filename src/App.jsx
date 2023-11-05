@@ -226,7 +226,7 @@ function App() {
         />
         <Route
           exact
-          path="/success/:success/plan/:plan"
+          path="/paymentstatus"
           element={<PlanResult />}
         />
       </Routes>
