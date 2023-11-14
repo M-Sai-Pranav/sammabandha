@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import ReactDOM from 'react-dom';
 
@@ -57,8 +57,17 @@ function PhotoUpload() {
   };
 
   return (
-    <Container maxWidth="xs">
-      <Paper elevation={3} style={{ padding: '20px' }}>
+    <Container
+      maxWidth="xs"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '100vh', // Center the form vertically
+      }}
+    >
+      <Paper elevation={3} style={{ padding: '20px', backgroundColor: 'white' }}>
         <Typography variant="h5">Upload Your Photo</Typography>
         <form>
           <Grid container spacing={2}>

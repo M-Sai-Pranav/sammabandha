@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {
-  TextField, Button, Box, Container, Typography,
+  TextField, Button, Paper, Container, Typography,
 } from '@mui/material';
 import axios from 'axios';
 
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -57,16 +57,18 @@ function LoginForm() {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          mt: 4,
-        }}
-      >
-        <Typography variant="h4">Login After malli agian</Typography>
+    <Container
+      maxWidth="xs"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '100vh', // Center the form vertically
+      }}
+    >
+      <Paper elevation={3} style={{ padding: '20px', backgroundColor: 'white' }}>
+        <Typography variant="h4">Log In</Typography>
         <form>
           <TextField
             label="Username"
@@ -97,12 +99,19 @@ function LoginForm() {
         <Typography variant="body1" mt={2}>
           {message}
         </Typography>
-      </Box>
-      <Link to="/nav">
-        <button type="submit">
-          nav
-        </button>
-      </Link>
+        <div style={{ textAlign: 'center', marginTop: '5%' }}>
+          <Link to="/ResetPassword" variant="subtitle1">
+            Forgotten password?
+          </Link>
+        </div>
+        <div style={{ textAlign: 'center', marginTop: '5%' }}>
+
+          <Typography variant="subtitle1">OR</Typography>
+          <Link to="/register" variant="subtitle1">
+            Sign up for a new account
+          </Link>
+        </div>
+      </Paper>
     </Container>
   );
 }

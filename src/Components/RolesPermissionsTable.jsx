@@ -77,9 +77,9 @@ function RolesPermissionsTable() {
 
   return (
     <Container>
-      <Button component={Link} to="/setrolesandpermissions" variant="contained" color="primary">
+      {/* <Button component={Link} to="/setrolesandpermissions" variant="contained" color="primary">
         Manage Permissions
-      </Button>
+      </Button> */}
       <Grid container spacing={2} style={{ marginTop: '5%' }}>
         <Grid item xs={12} sm={6}>
           <div>

@@ -8,6 +8,7 @@ import {
   Card,
   CardContent,
   Typography,
+  MenuItem,
   Grid,
 } from '@material-ui/core';
 import axios from 'axios';
@@ -110,11 +111,79 @@ function BadgeList() {
                 <form
                   className={selectedPreferences.includes(preference) ? classes.form : ''}
                 >
-                  <TextField
-                    label={`Enter ${preference}`}
-                    fullWidth
-                    onChange={(e) => handleInputChange(preference, e.target.value)}
-                  />
+                  {preference === 'religion' && (
+                    <TextField
+                      select
+                      label={`Select ${preference}`}
+                      fullWidth
+                      onChange={(e) => handleInputChange(preference, e.target.value)}
+                    >
+                      <MenuItem value="Hindu">Hindu</MenuItem>
+                      <MenuItem value="Muslim">Muslim</MenuItem>
+                      <MenuItem value="Christian">Christian</MenuItem>
+                      {/* Add more religion options as needed */}
+                    </TextField>
+                  )}
+
+                  {preference === 'caste' && (
+                    <TextField
+                      select
+                      label={`Select ${preference}`}
+                      fullWidth
+                      onChange={(e) => handleInputChange(preference, e.target.value)}
+                    >
+                      <MenuItem value="OC">OC</MenuItem>
+                      <MenuItem value="BC">BC</MenuItem>
+                      <MenuItem value="SC">SC</MenuItem>
+                      <MenuItem value="ST">ST</MenuItem>
+                    </TextField>
+                  )}
+
+                  {preference === 'marital_status' && (
+                    <TextField
+                      select
+                      label={`Select ${preference}`}
+                      fullWidth
+                      onChange={(e) => handleInputChange(preference, e.target.value)}
+                    >
+                      <MenuItem value="Single">Single</MenuItem>
+                      <MenuItem value="Married">Married</MenuItem>
+                    </TextField>
+                  )}
+
+                  {(preference === 'minHeight' || preference === 'maxHeight') && (
+                    <TextField
+                      select
+                      label={`Select ${preference}`}
+                      fullWidth
+                      onChange={(e) => handleInputChange(preference, e.target.value)}
+                    >
+                      {Array.from({ length: 5 }, (_, i) => i + 3).map((height) => (
+                        <MenuItem key={height} value={height}>
+                          {height}
+                          {' '}
+                          ft
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  )}
+
+                  {(preference === 'minSalary' || preference === 'maxSalary') && (
+                    <TextField
+                      select
+                      label={`Select ${preference}`}
+                      fullWidth
+                      onChange={(e) => handleInputChange(preference, e.target.value)}
+                    >
+                      {Array.from({ length: 73 }, (_, i) => i + 3).map((salary) => (
+                        <MenuItem key={salary} value={salary}>
+                          {salary}
+                          {' '}
+                          lakhs
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  )}
                 </form>
               </div>
             ))}
