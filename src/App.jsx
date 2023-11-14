@@ -14,7 +14,6 @@ import Home from './Components/Home';
 import PhotoUpload from './Components/PhotoUpload';
 // import Contact from './Components/ProfileForm';
 // import Shop from './Components/PreferencesForm';
-import Book from './Components/Book';
 // import Item from './Components/RegistrationForm';
 import RegistrationForm from './Components/RegistrationForm';
 import PreferencesForm from './Components/PreferencesForm';
@@ -34,6 +33,11 @@ import DateNow from './Components/DateNow';
 import VerifyRegistration from './Components/VerifyRegistration';
 import Plans from './Components/Plans';
 import PlanResult from './Components/PlanResult';
+import AboutUs from './Components/AboutFounders';
+import ResetPassword from './Components/ResetPassword';
+import EnterSecurityCode from './Components/EnterSecurityCode';
+import Shop from './Components/Shop';
+import LocationDialog from './Components/LocationDialog';
 
 function Navigation() {
   useEffect(() => {
@@ -81,8 +85,14 @@ function Navigation() {
         <Button color="inherit" component={Link} to="/plans">
           Plans
         </Button>
-        <Button color="inherit" component={Link} to="/book">
-          Books
+        <Button color="inherit" component={Link} to="/shop">
+          Shop
+        </Button>
+        <Button color="inherit" component={Link} to="/aboutus">
+          AboutUs
+        </Button>
+        <Button color="inherit" component={Link} to="/location">
+          Location
         </Button>
       </Toolbar>
     </AppBar>
@@ -144,13 +154,6 @@ function App() {
           path="/"
           element={
             <DateNow />
-            }
-        />
-        <Route
-          exact
-          path="/book"
-          element={
-            <Book />
             }
         />
         <Route
@@ -228,6 +231,31 @@ function App() {
           exact
           path="/paymentstatus"
           element={<PlanResult />}
+        />
+        <Route
+          exact
+          path="/aboutus"
+          element={<AboutUs />}
+        />
+        <Route
+          exact
+          path="/ResetPassword"
+          element={<ResetPassword />}
+        />
+        <Route
+          exact
+          path="/verifyOTP"
+          element={<EnterSecurityCode />}
+        />
+        <Route
+          exact
+          path="/shop"
+          element={<Shop />}
+        />
+        <Route
+          exact
+          path="/location"
+          element={<LocationDialog />}
         />
       </Routes>
     </BrowserRouter>

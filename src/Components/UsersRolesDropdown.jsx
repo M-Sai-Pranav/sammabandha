@@ -210,7 +210,7 @@ function UsersRolesDropdown() {
   };
 
   return (
-    <Container>
+    <Container style={{ marginTop: '5%' }}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <FormControl fullWidth>
@@ -314,12 +314,6 @@ function UsersRolesDropdown() {
         onClose={handleSnackbarClose}
         message={mode === 'insert' ? 'New user and roles added' : 'Roles removed'}
       />
-
-      <Link to="/nav">
-        <button>
-          nav
-        </button>
-      </Link>
     </Container>
   );
 }
