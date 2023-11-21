@@ -38,6 +38,11 @@ import ResetPassword from './Components/ResetPassword';
 import EnterSecurityCode from './Components/EnterSecurityCode';
 import Shop from './Components/Shop';
 import LocationDialog from './Components/LocationDialog';
+import Sha from './Components/ShapyFyMe';
+import Education from './Components/Education';
+import Business from './Components/Business';
+import Counseling from './Components/Counseling';
+import Event from './Components/Event';
 
 function Navigation() {
   useEffect(() => {
@@ -45,6 +50,7 @@ function Navigation() {
   }, []);
   return (
     <AppBar position="static">
+      {/* First Toolbar */}
       <Toolbar>
         <IconButton edge="start" color="inherit" aria-label="menu">
           <MenuIcon />
@@ -70,6 +76,10 @@ function Navigation() {
         <Button color="inherit" component={Link} to="/home">
           User Data
         </Button>
+      </Toolbar>
+
+      {/* Second Toolbar */}
+      <Toolbar>
         <Button color="inherit" component={Link} to="/BadgeList">
           Find Matches
         </Button>
@@ -93,6 +103,24 @@ function Navigation() {
         </Button>
         <Button color="inherit" component={Link} to="/location">
           Location
+        </Button>
+        <Button color="inherit" component={Link} to="/">
+          Date/ Matrimony
+        </Button>
+        <Button color="inherit" component={Link} to="/Education">
+          Education
+        </Button>
+        <Button color="inherit" component={Link} to="/Counseling">
+          Counseling
+        </Button>
+        <Button color="inherit" component={Link} to="/Event">
+          Event
+        </Button>
+        <Button color="inherit" component={Link} to="/Business">
+          Business
+        </Button>
+        <Button color="inherit" component={Link} to="/sha">
+          ShapFy Me
         </Button>
       </Toolbar>
     </AppBar>
@@ -256,6 +284,31 @@ function App() {
           exact
           path="/location"
           element={<LocationDialog />}
+        />
+        <Route
+          exact
+          path="/Education"
+          element={<Education />}
+        />
+        <Route
+          exact
+          path="/sha"
+          element={<Sha />}
+        />
+        <Route
+          exact
+          path="/Business"
+          element={<Business />}
+        />
+        <Route
+          exact
+          path="/Counseling"
+          element={<Counseling />}
+        />
+        <Route
+          exact
+          path="/Event"
+          element={<Event />}
         />
       </Routes>
     </BrowserRouter>
