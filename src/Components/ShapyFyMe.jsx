@@ -1482,7 +1482,7 @@ function Sha() {
                 {/* Meet Your Instructor Section */}
                 <div>
                   <Typography variant="h2" style={classicFontStyles} paragraph>
-                    An article highlighting Pallavi's unwavering
+                    An article highlighting Dr. Pallavi G.K's unwavering
                     support for Indian students in Ukraine has been published.
                   </Typography>
                   <Typography variant="body1" style={instructorDescriptionStyles}>
