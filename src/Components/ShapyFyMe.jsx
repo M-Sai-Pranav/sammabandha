@@ -1429,7 +1429,6 @@ function Sha() {
 
             {/* 4 */}
 
-
             <div style={curvedContainerStylesWithImage}>
               {/* Left side: Image */}
               <img src={pp4} alt="Instructor" style={{ maxWidth: '40%' }} />
@@ -1707,6 +1706,206 @@ function Sha() {
                     Instructor
                     <br />
                     Dr. [Instructor Name]
+                  </Typography>
+                </div>
+
+                <div style={cardStyles}>
+                  <WatchIcon style={iconStyles} />
+                  <Typography variant="body1" style={cardTextStyles}>
+                    Duration - 5 Days
+                  </Typography>
+                </div>
+
+                <div style={cardStyles}>
+                  <LocationOnIcon style={iconStyles} />
+                  <Typography variant="body1" style={cardTextStyles}>
+                    Mode - Online
+                  </Typography>
+                </div>
+              </div>
+
+              <Typography variant="body1" style={cardTextStyles}>
+                Dr. Pallavi G.K
+                <br />
+              </Typography>
+            </Paper>
+            {/* Mental  Health */}
+
+            {/* THE POWER OF NEUROPLASTICITY */}
+            <Typography variant="h3" style={welcomeStyles} paragraph>
+              The Importance of Mental Health
+            </Typography>
+            <Typography variant="h5" style={subtitleStyles} paragraph>
+              WE ARE HERE FOR YOU
+            </Typography>
+            <Typography variant="h3" style={hubInfoStyles} paragraph>
+              <span style={nonBoldFontStyles}>
+                {/* THE POWER OF */}
+                {/* GRATITUDE */}
+                {/* <br /> */}
+                Join Our Mental Health supportive initiative to transform and save lives
+              </span>
+            </Typography>
+            <div style={shineUpContainerStyles}>
+              <div style={shineUpItemStyles}>
+                {/* <SvgIcon component={ArrowUpwardIcon} style={iconStyles} /> */}
+                {/* <Typography variant="body1" style={classicFontStyles}>
+                    Come up
+                  </Typography> */}
+              </div>
+              <div style={shineUpItemStyles}>
+                {/* <SvgIcon component={VisibilityIcon} style={iconStyles} /> */}
+                <Typography variant="body1" style={classicFontStyles}>
+                  Transforming the lives
+                </Typography>
+              </div>
+              <div style={shineUpItemStyles}>
+                {/* <SvgIcon component={Brightness5Icon} style={iconStyles} />
+                  <Typography variant="body1" style={classicFontStyles}>
+                    Shine up
+                  </Typography> */}
+              </div>
+            </div>
+
+            <Paper style={curvedContainerStyles} elevation={3}>
+              <Typography variant="h2" style={headingStyles} paragraph>
+                Are you ready to embark on a
+                journey towards better mental health and well-being?
+              </Typography>
+
+              <Typography variant="body1" style={subheadingStyles} paragraph>
+                We invite you to be a part of our life-changing
+                Mental Health Development Program.
+              </Typography>
+
+              <div style={{ ...curvedContainerStyles }}>
+                <Typography variant="h2" style={classicFontStyles} paragraph>
+                  Our program offers a comprehensive approach to mental wellness.
+                </Typography>
+
+                {/* Cards with Icons and Text */}
+                <div style={cardStyles}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <SvgIcon component={CheckCircleOutlineIcon} style={iconStyles} /> */}
+                    <Typography variant="body1" style={cardTextStyles}>
+                      <span style={iconTextGap}>
+                        In today's fast-paced world,
+                        taking care of
+                        your mental health is paramount,
+                        and we're here to support you every step of the way.
+                      </span>
+                    </Typography>
+                  </div>
+                </div>
+                <div style={cardStyles}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <SvgIcon component={CheckCircleOutlineIcon} style={iconStyles} /> */}
+                    <Typography variant="body1" style={cardTextStyles}>
+                      <span style={iconTextGap}>
+                        Through expert guidance and a supportive community, you'll learn valuable
+                        techniques for managing stress,
+                        anxiety, and other challenges that life throws your way.
+                      </span>
+                    </Typography>
+                  </div>
+                </div>
+                <div style={cardStyles}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <SvgIcon component={CheckCircleOutlineIcon} style={iconStyles} /> */}
+                    <Typography variant="body1" style={cardTextStyles}>
+                      <span style={iconTextGap}>
+                        We provide you with tools to build resilience,
+                        boost self-esteem, and find inner peace.
+                      </span>
+                    </Typography>
+                  </div>
+                </div>
+                <div style={cardStyles}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <SvgIcon component={CheckCircleOutlineIcon} style={iconStyles} /> */}
+                    <Typography variant="body1" style={cardTextStyles}>
+                      <span style={iconTextGap}>
+                        By participating in our program, you're not just investing in
+                        yourself; you're joining a
+                        community of individuals dedicated to personal growth and mental well-being.
+                      </span>
+                    </Typography>
+                  </div>
+                </div>
+                <div style={cardStyles}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <SvgIcon component={CheckCircleOutlineIcon} style={iconStyles} /> */}
+                    <Typography variant="body1" style={cardTextStyles}>
+                      <span style={iconTextGap}>
+                        Together, we'll break down the stigma surrounding mental health and create
+                        a culture of understanding and support.
+                      </span>
+                    </Typography>
+                  </div>
+                </div>
+                <div style={cardStyles}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <SvgIcon component={CheckCircleOutlineIcon} style={iconStyles} /> */}
+                    <Typography variant="body1" style={cardTextStyles}>
+                      <span style={iconTextGap}> We listen, support, and be there for you.</span>
+                    </Typography>
+                  </div>
+                </div>
+                <div style={cardStyles}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <SvgIcon component={CheckCircleOutlineIcon} style={iconStyles} /> */}
+                    <Typography variant="body1" style={cardTextStyles}>
+                      <span style={iconTextGap}> Join us</span>
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+
+              <List>
+                <ListItem style={bulletPointStyles}>
+                  <ListItemIcon>
+                    <CheckCircleOutlineIcon style={bulletIconStyles} />
+                  </ListItemIcon>
+                  <ListItemText primary="Led by a doctor (Nature cure and yoga Physician) with expertise in Psychology of Happiness @ Oxford and Health Promotion @ University of Leeds." />
+                </ListItem>
+
+                <ListItem style={bulletPointStyles}>
+                  <ListItemIcon>
+                    <CheckCircleOutlineIcon style={bulletIconStyles} />
+                  </ListItemIcon>
+                  <ListItemText primary="8 years of experience conducting lifestyle management programs and treating non-communicable diseases with abundant results." />
+                </ListItem>
+
+                <ListItem style={bulletPointStyles}>
+                  <ListItemIcon>
+                    <CheckCircleOutlineIcon style={bulletIconStyles} />
+                  </ListItemIcon>
+                  <ListItemText primary="Replenish, revitalize, and discover yourself in this individual and transformative journey." />
+                </ListItem>
+
+                <ListItem style={bulletPointStyles}>
+                  <ListItemIcon>
+                    <CheckCircleOutlineIcon style={bulletIconStyles} />
+                  </ListItemIcon>
+                  <ListItemText primary="Explore mindfulness, meditation, sleep, diet, and exercise for sustainable change." />
+                </ListItem>
+              </List>
+
+              <Typography variant="body1" style={subheadingStyles} paragraph>
+                It's the time to revitalize, detoxify, rejuvenate, and transform your life by  prioritizing your mental health.
+              </Typography>
+
+              <Typography variant="body1" style={contactTextStyles}>
+                Contact for more details:
+              </Typography>
+
+              <div style={cardContainerStyles}>
+                <div style={cardStyles}>
+                  <FavoriteIcon style={iconStyles} />
+                  <Typography variant="body1" style={cardTextStyles}>
+                    Instructor
+                    <br />
+                    Dr. Pallavi G.K
                   </Typography>
                 </div>
 
