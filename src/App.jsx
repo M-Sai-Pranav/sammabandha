@@ -43,6 +43,7 @@ import Education from './Components/Education';
 import Business from './Components/Business';
 import Counseling from './Components/Counseling';
 import Event from './Components/Event';
+import Art from './Components/Art';
 
 function Navigation() {
   useEffect(() => {
@@ -118,6 +119,9 @@ function Navigation() {
         </Button>
         <Button color="inherit" component={Link} to="/Business">
           Business
+        </Button>
+        <Button color="inherit" component={Link} to="/Art">
+          Art
         </Button>
         <Button color="inherit" component={Link} to="/sha">
           ShapFy Me
@@ -309,6 +313,11 @@ function App() {
           exact
           path="/Event"
           element={<Event />}
+        />
+        <Route
+          exact
+          path="/Art"
+          element={<Art />}
         />
       </Routes>
     </BrowserRouter>
