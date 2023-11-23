@@ -123,9 +123,9 @@ function Navigation() {
         <Button color="inherit" component={Link} to="/Art">
           Art
         </Button>
-        <Button color="inherit" component={Link} to="/sha">
+        {/* <Button color="inherit" component={Link} to="/sha">
           ShapFy Me
-        </Button>
+        </Button> */}
       </Toolbar>
     </AppBar>
   );
@@ -294,11 +294,11 @@ function App() {
           path="/Education"
           element={<Education />}
         />
-        <Route
+        {/* <Route
           exact
           path="/sha"
           element={<Sha />}
-        />
+        /> */}
         <Route
           exact
           path="/Business"
