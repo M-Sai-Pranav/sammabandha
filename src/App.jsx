@@ -37,13 +37,6 @@ import AboutUs from './Components/AboutFounders';
 import ResetPassword from './Components/ResetPassword';
 import EnterSecurityCode from './Components/EnterSecurityCode';
 import Shop from './Components/Shop';
-import LocationDialog from './Components/LocationDialog';
-import Sha from './Components/ShapyFyMe';
-import Education from './Components/Education';
-import Business from './Components/Business';
-import Counseling from './Components/Counseling';
-import Event from './Components/Event';
-import Art from './Components/Art';
 
 function Navigation() {
   useEffect(() => {
@@ -102,30 +95,6 @@ function Navigation() {
         <Button color="inherit" component={Link} to="/aboutus">
           AboutUs
         </Button>
-        <Button color="inherit" component={Link} to="/location">
-          Location
-        </Button>
-        <Button color="inherit" component={Link} to="/">
-          Date/ Matrimony
-        </Button>
-        <Button color="inherit" component={Link} to="/Education">
-          Education
-        </Button>
-        <Button color="inherit" component={Link} to="/Counseling">
-          Counseling
-        </Button>
-        <Button color="inherit" component={Link} to="/Event">
-          Event
-        </Button>
-        <Button color="inherit" component={Link} to="/Business">
-          Business
-        </Button>
-        <Button color="inherit" component={Link} to="/Art">
-          Art
-        </Button>
-        {/* <Button color="inherit" component={Link} to="/sha">
-          ShapFy Me
-        </Button> */}
       </Toolbar>
     </AppBar>
   );
@@ -283,41 +252,6 @@ function App() {
           exact
           path="/shop"
           element={<Shop />}
-        />
-        <Route
-          exact
-          path="/location"
-          element={<LocationDialog />}
-        />
-        <Route
-          exact
-          path="/Education"
-          element={<Education />}
-        />
-        {/* <Route
-          exact
-          path="/sha"
-          element={<Sha />}
-        /> */}
-        <Route
-          exact
-          path="/Business"
-          element={<Business />}
-        />
-        <Route
-          exact
-          path="/Counseling"
-          element={<Counseling />}
-        />
-        <Route
-          exact
-          path="/Event"
-          element={<Event />}
-        />
-        <Route
-          exact
-          path="/Art"
-          element={<Art />}
         />
       </Routes>
     </BrowserRouter>
