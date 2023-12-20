@@ -15,8 +15,8 @@ import SecurityIcon from '@mui/icons-material/Security';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ChatIcon from '@mui/icons-material/Chat';
+import bg from '../books/date1.png';
 import flagB from '../books/flagDatenow.jpg';
-import bg from '../books/matrimony.png';
 
 const imageStyles = {
   maxWidth: '100%',
@@ -93,14 +93,14 @@ function RegistrationFormLiveIn() {
         <Toolbar>
           {/* Left side of the navbar */}
           <Typography variant="h6" style={{ marginRight: 'auto' }}>
-            Matrimony
+            Dating
           </Typography>
 
           {/* Right side of the navbar */}
           <Button color="inherit" component={Link} to="/">
             Home
           </Button>
-          <Button color="inherit" component={Link} to="/registernew">
+          <Button color="inherit" component={Link} to="/registernewdating">
             Register
           </Button>
           <Button color="inherit" component={Link} to="/reviews">
@@ -121,12 +121,12 @@ function RegistrationFormLiveIn() {
 
         <img src={flagB} alt="All" style={{ imageStyles, width: '15%', height: '15%' }} />
         <Typography variant="body1" style={{ ...welcomeStyles, marginTop: '20px', color: 'green' }}>
-          Sammabandha Matrimony
+          Sammabandha Dating
         </Typography>
       </div>
       <div style={curvedImageContainerStyles}>
         <Typography variant="h5" style={{ fontWeight: 'bold', color: 'blue' }}>
-          World's No.1 Ambedkarite Matchmaking & Matrimonial Site
+          World's No.1 Ambedkarite Dating Site
         </Typography>
       </div>
       <div style={{
@@ -136,7 +136,6 @@ function RegistrationFormLiveIn() {
         padding: '50px', // Adjust padding as needed
       }}
       >
-
         <img src={bg} alt="All" style={{ imageStyles, width: '100%', height: '100%' }} />
 
       </div>
@@ -184,7 +183,7 @@ function RegistrationFormLiveIn() {
         <Grid container spacing={2} style={{ marginBottom: '20px' }}>
           <Grid item xs={12}>
             <Typography variant="h6">
-              Sammabandha Matrimony has been ranked among the topmost Bureaus serving Ambedkarites all over the world.
+              Sammabandha Dating has been ranked among the topmost Bureaus serving Ambedkarites all over the world.
             </Typography>
           </Grid>
         </Grid>
@@ -253,7 +252,7 @@ function RegistrationFormLiveIn() {
 
           {/* 5th part */}
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6"> Guides</Typography>
+            <Typography variant="h6">NRIMB Guides</Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Button variant="outlined" fullWidth>

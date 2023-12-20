@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import {
-  Grid, Paper, Typography, Button,
+  Grid, Paper, Typography, Button, AppBar, Toolbar,
 } from '@mui/material';
 import ReactDOM from 'react-dom';
 import Badge from '@mui/material/Badge';
@@ -189,6 +189,31 @@ function Book() {
   };
   return (
     <>
+      <AppBar position="static">
+        <Toolbar>
+          {/* Left side of the navbar */}
+          <Typography variant="h6" style={{ marginRight: 'auto' }}>
+            Shop
+          </Typography>
+
+          {/* Right side of the navbar */}
+          <Button color="inherit" component={Link} to="/">
+            Home
+          </Button>
+          <Button color="inherit" component={Link} to="/reviews">
+            Reviews
+          </Button>
+          <Button color="inherit" component={Link} to="/personalize">
+            Personalize
+          </Button>
+          <Button color="inherit" component={Link} to="/contactus">
+            Contact Us
+          </Button>
+          <Button color="inherit" component={Link} to="/aboutus">
+            About Us
+          </Button>
+        </Toolbar>
+      </AppBar>
       <div style={{ padding: '20px' }}>
         <div style={{
           backgroundColor: '#e1f5fe', // light-blue background color

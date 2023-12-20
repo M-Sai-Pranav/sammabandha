@@ -6,8 +6,15 @@ import {
 
 // import Stack from '@mui/material/Stack';
 import {
-  AppBar, Toolbar, Typography, Button, IconButton,
-} from '@mui/material';
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from '@material-ui/core';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import Home from './Components/Home';
@@ -37,22 +44,92 @@ import AboutUs from './Components/AboutFounders';
 import ResetPassword from './Components/ResetPassword';
 import EnterSecurityCode from './Components/EnterSecurityCode';
 import Shop from './Components/Shop';
+import LocationDialog from './Components/LocationDialog';
+import Sha from './Components/ShapyFyMe';
+import Education from './Components/Education';
+import Business from './Components/Business';
+import Counseling from './Components/Counseling';
+import Event from './Components/Event';
+import Art from './Components/Art';
+import RegistrationFormLiveIn from './Components/RegisterLiveIn';
+import RegistrationFormDate from './Components/RegisterDate';
+import HealthCare from './Components/HealthCare';
+import LifeStyle from './Components/LifeStyle';
+import MeetingCoordination from './Components/Meeting';
+import NRIRegistrationForm from './Components/NRIRegistrationForm';
+import RegistrationNew from './Components/RegisterNew';
+import RegistrationNewLiveIn from './Components/RegisterNewLivein';
+import RegistrationNewDating from './Components/RegisterNewDating';
+import RegistrationNRIMatrimony from './Components/RegisterNRIMatrimony';
+import PlanAll from './Components/PlanAll';
 
 function Navigation() {
   useEffect(() => {
     console.log(window.location.pathname);
   }, []);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === 'keydown'
+      && (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setDrawerOpen(open);
+  };
+
+  const menuItems = [
+    { text: 'Matrimony', link: '/' },
+    { text: 'Date', link: '/' },
+    { text: 'Live in', link: '/live-in' },
+    { text: 'About Us', link: '/aboutus' },
+    { text: 'Events', link: '/events' },
+    { text: 'Shop', link: '/shop' },
+  ];
+  const handleItemClick = () => {
+    setDrawerOpen(false); // Close the Drawer when a menu item is clicked
+  };
+  const drawerWidth = 300;
   return (
     <AppBar position="static">
       {/* First Toolbar */}
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu">
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleDrawer(true)}
+        >
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Sammabandh
+          Sammabandha
         </Typography>
-        <Button color="inherit" component={Link} to="/Register">
+      </Toolbar>
+
+      <Drawer
+        open={drawerOpen}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          style: {
+            width: drawerWidth,
+          },
+        }}
+      >
+        <List>
+          <ListItem>
+            <ListItemText primary="The App" />
+          </ListItem>
+          {menuItems.map((item, index) => (
+            <ListItem button key={index} component={Link} to={item.link} onClick={handleItemClick}>
+              <ListItemText primary={item.text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      {/* <Button color="inherit" component={Link} to="/Register">
           Registration
         </Button>
         <Button color="inherit" component={Link} to="/Login">
@@ -69,11 +146,10 @@ function Navigation() {
         </Button>
         <Button color="inherit" component={Link} to="/home">
           User Data
-        </Button>
-      </Toolbar>
+        </Button> */}
 
       {/* Second Toolbar */}
-      <Toolbar>
+      {/* <Toolbar>
         <Button color="inherit" component={Link} to="/BadgeList">
           Find Matches
         </Button>
@@ -95,7 +171,31 @@ function Navigation() {
         <Button color="inherit" component={Link} to="/aboutus">
           AboutUs
         </Button>
-      </Toolbar>
+        <Button color="inherit" component={Link} to="/location">
+          Location
+        </Button>
+        <Button color="inherit" component={Link} to="/">
+          Date/ Matrimony
+        </Button>
+        <Button color="inherit" component={Link} to="/Education">
+          Education
+        </Button>
+        <Button color="inherit" component={Link} to="/Counseling">
+          Counseling
+        </Button>
+        <Button color="inherit" component={Link} to="/Event">
+          Event
+        </Button>
+        <Button color="inherit" component={Link} to="/Business">
+          Business
+        </Button>
+        <Button color="inherit" component={Link} to="/Art">
+          Art
+        </Button>
+        <Button color="inherit" component={Link} to="/sha">
+          ShapFy Me
+        </Button>
+      </Toolbar> */}
     </AppBar>
   );
 }
@@ -220,6 +320,20 @@ function App() {
         />
         <Route
           exact
+          path="/RegisterLiveIn"
+          element={
+            <RegistrationFormLiveIn />
+            }
+        />
+        <Route
+          exact
+          path="/RegisterDating"
+          element={
+            <RegistrationFormDate />
+            }
+        />
+        <Route
+          exact
           path="/verifyregistration"
           element={<VerifyRegistration />}
         />
@@ -227,6 +341,11 @@ function App() {
           exact
           path="/plans"
           element={<Plans />}
+        />
+        <Route
+          exact
+          path="/planall"
+          element={<PlanAll />}
         />
         <Route
           exact
@@ -252,6 +371,81 @@ function App() {
           exact
           path="/shop"
           element={<Shop />}
+        />
+        <Route
+          exact
+          path="/location"
+          element={<LocationDialog />}
+        />
+        <Route
+          exact
+          path="/Education"
+          element={<Education />}
+        />
+        <Route
+          exact
+          path="/sha"
+          element={<Sha />}
+        />
+        <Route
+          exact
+          path="/Business"
+          element={<Business />}
+        />
+        <Route
+          exact
+          path="/Counseling"
+          element={<Counseling />}
+        />
+        <Route
+          exact
+          path="/Event"
+          element={<Event />}
+        />
+        <Route
+          exact
+          path="/Art"
+          element={<Art />}
+        />
+        <Route
+          exact
+          path="/LifeStyle"
+          element={<LifeStyle />}
+        />
+        <Route
+          exact
+          path="/Health"
+          element={<HealthCare />}
+        />
+        <Route
+          exact
+          path="/MeetingCoordination"
+          element={<MeetingCoordination />}
+        />
+        <Route
+          exact
+          path="/nri"
+          element={<NRIRegistrationForm />}
+        />
+        <Route
+          exact
+          path="/registernew"
+          element={<RegistrationNew />}
+        />
+        <Route
+          exact
+          path="/registernewlive"
+          element={<RegistrationNewLiveIn />}
+        />
+        <Route
+          exact
+          path="/registernewdating"
+          element={<RegistrationNewDating />}
+        />
+        <Route
+          exact
+          path="/nriregister"
+          element={<RegistrationNRIMatrimony />}
         />
       </Routes>
     </BrowserRouter>

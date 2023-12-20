@@ -15,6 +15,10 @@ import SecurityIcon from '@mui/icons-material/Security';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ChatIcon from '@mui/icons-material/Chat';
+import n1 from '../books/nri1.png';
+import n2 from '../books/nri2.png';
+import n3 from '../books/nri3.png';
+import n4 from '../books/nri4.png';
 import flagB from '../books/flagDatenow.jpg';
 import bg from '../books/matrimony.png';
 
@@ -37,6 +41,33 @@ const curvedImageContainerStyles = {
   display: 'flex',
   gap: '10%',
 };
+
+const nriImages = [
+  {
+    imageUrl: n1,
+  },
+  {
+    imageUrl: n2,
+  },
+  {
+    imageUrl: n3,
+  },
+  {
+    imageUrl: n4,
+  },
+
+  // Add more products here
+];
+
+function NriImagesCard({ image, handleAddToCart }) {
+  return (
+    <Paper elevation={3} style={{ padding: '16px', margin: '16px' }}>
+      <img src={image.imageUrl} alt="NRI Image" style={{ width: '100%' }} />
+      {/* Add any additional information you want to display */}
+    </Paper>
+  );
+}
+
 function InfoSection({ icon, heading, text }) {
   return (
     <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
@@ -51,7 +82,7 @@ function InfoSection({ icon, heading, text }) {
   );
 }
 
-function RegistrationFormLiveIn() {
+function NRIRegistrationForm() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: '',
@@ -88,19 +119,19 @@ function RegistrationFormLiveIn() {
   };
 
   return (
-    <>
+    <div>
       <AppBar position="static">
         <Toolbar>
           {/* Left side of the navbar */}
           <Typography variant="h6" style={{ marginRight: 'auto' }}>
-            Matrimony
+            Matrimony for NRI
           </Typography>
 
           {/* Right side of the navbar */}
           <Button color="inherit" component={Link} to="/">
             Home
           </Button>
-          <Button color="inherit" component={Link} to="/registernew">
+          <Button color="inherit" component={Link} to="/nriregister">
             Register
           </Button>
           <Button color="inherit" component={Link} to="/reviews">
@@ -121,12 +152,12 @@ function RegistrationFormLiveIn() {
 
         <img src={flagB} alt="All" style={{ imageStyles, width: '15%', height: '15%' }} />
         <Typography variant="body1" style={{ ...welcomeStyles, marginTop: '20px', color: 'green' }}>
-          Sammabandha Matrimony
+          Sammabandha NRI Matrimony
         </Typography>
       </div>
       <div style={curvedImageContainerStyles}>
         <Typography variant="h5" style={{ fontWeight: 'bold', color: 'blue' }}>
-          World's No.1 Ambedkarite Matchmaking & Matrimonial Site
+          World's No.1 Ambedkarite NRI Matchmaking & Matrimonial Site
         </Typography>
       </div>
       <div style={{
@@ -179,12 +210,57 @@ function RegistrationFormLiveIn() {
           </Grid>
         </Grid>
       </Container>
+      <div style={{
+        backgroundColor: '', // light-blue background color
+        textAlign: 'center',
+        padding: '20px', // Add padding as needed
+      }}
+      >
+
+        <Typography variant="h4" gutterBottom>
+          Thousands of Success Stories
+        </Typography>
+
+        <Grid container spacing={3}>
+          {nriImages.map((image) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={image.imageID}>
+              <NriImagesCard image={image} />
+            </Grid>
+          ))}
+        </Grid>
+      </div>
+
+      <Container maxWidth="md" style={{ marginTop: '20px', marginBottom: '20px' }}>
+        <Typography variant="h4" gutterBottom>
+          Sammabandha Matrimony for NRI - Trusted NRI Matrimonial Site
+        </Typography>
+
+        <Typography variant="body1">
+          Sammabandha Matrimony for NRI is one of the most trusted and best matrimony sites in the world.
+          Our matrimonial services at www.sammabandha.com are available 24x7 and pave the way for millions of users
+          worldwide to find the most compatible and perfect match for them on marriage sites.
+        </Typography>
+
+        <Typography variant="body1" style={{ marginTop: '10px' }}>
+          The Sammabandha Matrimony for NRI is well equipped with a plethora of highly trained matrimonial
+          consultants who have years of experience in elite matchmaking services for individuals across the globe.
+          We are a 15-year-old global marriage bureau headquartered in Mysore, Karnataka (India),
+          giving our services to those who are looking for their perfect match through matchmaking sites.
+        </Typography>
+
+        <Typography variant="body1" style={{ marginTop: '10px' }}>
+          We have a long journey of more than 15 years of successful matrimonial services for brides and grooms
+          with efficient matchmaking experience in different communities.
+        </Typography>
+      </Container>
+
       <Container maxWidth="md" style={{ marginTop: '20px', marginBottom: '20px' }}>
         {/* 1st part */}
         <Grid container spacing={2} style={{ marginBottom: '20px' }}>
           <Grid item xs={12}>
             <Typography variant="h6">
-              Sammabandha Matrimony has been ranked among the topmost Bureaus serving Ambedkarites all over the world.
+              Sammabandha NRI has been ranked among the topmost Bureaus serving Ambedkarites
+              all over the world.
             </Typography>
           </Grid>
         </Grid>
@@ -277,8 +353,8 @@ function RegistrationFormLiveIn() {
           </Grid>
         </Grid>
       </Container>
-    </>
+    </div>
   );
 }
 
-export default RegistrationFormLiveIn;
+export default NRIRegistrationForm;
